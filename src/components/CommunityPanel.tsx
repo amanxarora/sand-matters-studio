@@ -398,8 +398,8 @@ export default function CommunityPanel({ regionId, isOpen, onClose }: CommunityP
               required
               rows={2}
               style={{
-                backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                color: 'var(--color-text-primary)',
+                backgroundColor: '#faf8f5',
+                color: '#1b2632',
                 border: '1px solid var(--glass-border)',
                 borderRadius: 'var(--border-radius-sm)',
                 padding: '8px',

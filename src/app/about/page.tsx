@@ -36,7 +36,7 @@ export default function AboutPage() {
           {/* Visual Grid: Core Pillars */}
           <div className={styles.grid}>
             <div className={styles.card}>
-              <div className={styles.cardIcon}>🛰️</div>
+              <div className={styles.cardIcon} style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>SAT</div>
               <h3 className={styles.cardTitle}>Continuous Observation</h3>
               <p className={styles.cardText}>
                 We harness multi-spectral imagery from the Copernicus Sentinel-2 constellation to monitor sensitive river basins and exposed waterways every 5 days.
@@ -44,7 +44,7 @@ export default function AboutPage() {
             </div>
             
             <div className={styles.card}>
-              <div className={styles.cardIcon}>🧠</div>
+              <div className={styles.cardIcon} style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>NET</div>
               <h3 className={styles.cardTitle}>ML-Driven Detections</h3>
               <p className={styles.cardText}>
                 Our specialized YOLOv8 object detection model scans satellite raster tiles to locate dredger barges, sorting sieves, stockpiles, and heavy machinery.
@@ -52,7 +52,7 @@ export default function AboutPage() {
             </div>
 
             <div className={styles.card}>
-              <div className={styles.cardIcon}>📊</div>
+              <div className={styles.cardIcon} style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>GIS</div>
               <h3 className={styles.cardTitle}>Biophysical Verification</h3>
               <p className={styles.cardText}>
                 We extract multi-spectral indices (NDVI, BSI, MNDWI) to measure biological canopy loss, soil stripping, and dredging-induced river morphology alterations.

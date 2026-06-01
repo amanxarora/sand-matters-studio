@@ -124,7 +124,7 @@ export default function ProfilePage() {
                         value={proximityRadius} 
                         onChange={(e) => setProximityRadius(e.target.value)}
                         className={styles.input}
-                        style={{ background: 'rgba(27, 30, 34, 0.9)' }}
+                        style={{ background: '#faf8f5', color: '#1b2632', border: '1px solid var(--glass-border)' }}
                       >
                         <option value="5">5 Kilometers (Strict Local Riparian corridor)</option>
                         <option value="10">10 Kilometers (Extended hydrological basin)</option>
@@ -165,7 +165,7 @@ export default function ProfilePage() {
                         value={alertFrequency} 
                         onChange={(e) => setAlertFrequency(e.target.value)}
                         className={styles.input}
-                        style={{ background: 'rgba(27, 30, 34, 0.9)' }}
+                        style={{ background: '#faf8f5', color: '#1b2632', border: '1px solid var(--glass-border)' }}
                       >
                         <option value="Immediate">Immediate (On Copernicus Sentinel-2 pass completions)</option>
                         <option value="Daily">Daily Synthesis Logs (Consolidated matrix deltas)</option>

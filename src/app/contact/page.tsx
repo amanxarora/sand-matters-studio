@@ -32,7 +32,6 @@ export default function ContactPage() {
         <div className={styles.container}>
           {/* Hero Section */}
           <div className={styles.hero}>
-            <div className={styles.heroTagline}>OPERATIONAL INTERFACE: SECURE INQUIRY</div>
             <h1 className={styles.heroTitle}>Establish Secure Communications</h1>
             <p className={styles.heroSubtitle}>
               Connect with our research coordinators, submit ground-truth field records, or coordinate environmental advocacy partnerships.
@@ -125,7 +124,7 @@ export default function ContactPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
               
               <div className={styles.card}>
-                <div className={styles.cardIcon}>📍</div>
+                <div className={styles.cardIcon} style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>HQ</div>
                 <h3 className={styles.cardTitle}>Research Command</h3>
                 <p className={styles.cardText} style={{ fontFamily: 'monospace', fontSize: '0.8rem', lineHeight: '1.6' }}>
                   <strong>Institute for Advanced Architecture of Catalonia</strong><br />
@@ -135,27 +134,23 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className={styles.card}>
-                <div className={styles.cardIcon}>🔗</div>
-                <h3 className={styles.cardTitle}>Institutional Redirections</h3>
-                <p className={styles.cardText} style={{ marginBottom: 'var(--spacing-4)' }}>
-                  Access official academic portals and explore parallel ecological structures.
-                </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <a href="https://iaac.net" target="_blank" rel="noreferrer" className={`${styles.button} ${styles.buttonSecondary}`} style={{ textAlign: 'center', fontSize: '0.78rem' }}>
-                    VISIT IAAC ACADEMIC SITE
-                  </a>
-                  <a href="#" className={`${styles.button} ${styles.buttonSecondary}`} style={{ textAlign: 'center', fontSize: '0.78rem' }}>
-                    LOAD LOCAL IAAC TELEMETRY MAP
-                  </a>
+              <div className={styles.card} style={{ padding: '0px !important', overflow: 'hidden' }}>
+                <iframe
+                  title="IAAC Pujades 102 Location Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.447556094038!2d2.1921909765955613!3d41.39669077926315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a3176486d56b%3A0x43da322368b6ed68!2sInstitute%20for%20Advanced%20Architecture%20of%20Catalonia!5e0!3m2!1sen!2ses!4v1717285623042!5m2!1sen!2ses"
+                  width="100%"
+                  height="240"
+                  style={{ border: 0, verticalAlign: 'middle' }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+                <div style={{ padding: '20px var(--spacing-6)' }}>
+                  <h3 className={styles.cardTitle} style={{ fontSize: '1rem', marginBottom: '4px' }}>IAAC Research Map Node</h3>
+                  <p className={styles.cardText} style={{ fontSize: '12px', margin: 0 }}>
+                    Interactive satellite/topographical lock for Pujades 102, 08005 Barcelona, Spain.
+                  </p>
                 </div>
-              </div>
-
-              <div className={styles.consoleLog} style={{ margin: 0 }}>
-                <div className={styles.consoleHeader}>OPERATIONAL_INSTRUCTIONS_LOCK</div>
-                &gt; Pinned ground photo uploads require lat/lng coordinate tags.<br />
-                &gt; Form submissions are audited for anti-spam safety.<br />
-                &gt; Urgent illegal extraction records should be sent directly to compliance warden nodes.
               </div>
 
             </div>

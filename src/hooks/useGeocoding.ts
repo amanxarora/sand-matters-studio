@@ -54,16 +54,22 @@ export const useGeocoding = () => {
     setLoading(true);
     setError(null);
     try {
-      // Overpass bbox format is [minLat, minLng, maxLat, maxLng]
-      const overpassBbox = `${bbox[1]},${bbox[0]},${bbox[3]},${bbox[2]}`;
+      // Expand bbox slightly with a 0.015 degree buffer (~1.5km) to make it highly tolerant for user selections
+      const buffer = 0.015;
+      const minLng = bbox[0] - buffer;
+      const minLat = bbox[1] - buffer;
+      const maxLng = bbox[2] + buffer;
+      const maxLat = bbox[3] + buffer;
+      const overpassBbox = `${minLat},${minLng},${maxLat},${maxLng}`;
       
-      // Query for waterways (rivers, canals, riverbanks) inside ROI
+      // Query for waterways (rivers, streams, canals, riverbanks) inside the buffered ROI
       const query = `
         [out:json][timeout:25];
         (
           way["waterway"="river"](${overpassBbox});
           way["waterway"="riverbank"](${overpassBbox});
           way["waterway"="canal"](${overpassBbox});
+          way["waterway"="stream"](${overpassBbox});
         );
         out geom;
       `;

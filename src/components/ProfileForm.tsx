@@ -268,8 +268,8 @@ export default function ProfileForm({ onClose, forceShow = false }: ProfileFormP
                 value={profession}
                 onChange={(e) => setProfession(e.target.value)}
                 style={{
-                  backgroundColor: 'rgba(15, 23, 42, 0.6)',
-                  color: 'var(--color-text-primary)',
+                  backgroundColor: '#faf8f5',
+                  color: '#1b2632',
                   border: '1px solid var(--glass-border)',
                   padding: 'var(--spacing-3)',
                   borderRadius: 'var(--border-radius-sm)',
@@ -327,8 +327,8 @@ export default function ProfileForm({ onClose, forceShow = false }: ProfileFormP
                     }
                   }}
                   style={{
-                    backgroundColor: 'rgba(15, 23, 42, 0.6)',
-                    color: 'var(--color-text-primary)',
+                    backgroundColor: '#faf8f5',
+                    color: '#1b2632',
                     border: '1px solid var(--glass-border)',
                     padding: 'var(--spacing-3)',
                     borderRadius: 'var(--border-radius-sm)',
@@ -355,8 +355,8 @@ export default function ProfileForm({ onClose, forceShow = false }: ProfileFormP
                     value={state}
                     onChange={(e) => setState(e.target.value)}
                     style={{
-                      backgroundColor: 'rgba(15, 23, 42, 0.6)',
-                      color: 'var(--color-text-primary)',
+                      backgroundColor: '#faf8f5',
+                      color: '#1b2632',
                       border: '1px solid var(--glass-border)',
                       padding: 'var(--spacing-3)',
                       borderRadius: 'var(--border-radius-sm)',
@@ -386,8 +386,8 @@ export default function ProfileForm({ onClose, forceShow = false }: ProfileFormP
                     onChange={(e) => setCity(e.target.value)}
                     placeholder="Enter city or district"
                     style={{
-                      backgroundColor: 'rgba(15, 23, 42, 0.6)',
-                      color: 'var(--color-text-primary)',
+                      backgroundColor: '#faf8f5',
+                      color: '#1b2632',
                       border: '1px solid var(--glass-border)',
                       padding: 'var(--spacing-3)',
                       borderRadius: 'var(--border-radius-sm)',
@@ -465,8 +465,8 @@ export default function ProfileForm({ onClose, forceShow = false }: ProfileFormP
                 placeholder="Detail the specific environmental anomalies, riverbeds, or extraction channels you seek to monitor or research..."
                 rows={3}
                 style={{
-                  backgroundColor: 'rgba(15, 23, 42, 0.6)',
-                  color: 'var(--color-text-primary)',
+                  backgroundColor: '#faf8f5',
+                  color: '#1b2632',
                   border: '1px solid var(--glass-border)',
                   padding: 'var(--spacing-3)',
                   borderRadius: 'var(--border-radius-sm)',

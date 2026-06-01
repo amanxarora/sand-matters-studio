@@ -37,14 +37,19 @@
 
 .searchInput {
   flex: 1;
-  background-color: rgba(12, 15, 18, 0.6);
+  background-color: #faf8f5;
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius-sm);
   padding: var(--spacing-2) var(--spacing-3);
   font-size: var(--font-size-sm);
-  color: #fff;
+  color: var(--color-abyssal-blue);
   outline: none;
   font-family: var(--font-family-base);
+}
+
+.searchInput::placeholder {
+  color: var(--color-blue-fantastic);
+  opacity: 0.65;
 }
 
 .searchInput:focus {

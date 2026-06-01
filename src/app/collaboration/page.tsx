@@ -36,7 +36,6 @@ export default function CollaborationPage() {
           
           {/* Hero Section */}
           <div className={styles.hero}>
-            <div className={styles.heroTagline}>OPERATIONAL DIRECTIVE: COOPERATIVE TELEMETRY</div>
             <h1 className={styles.heroTitle}>Institutional &amp; NGO Collaboration Node</h1>
             <p className={styles.heroSubtitle}>
               Connecting grassroots networks, research bodies, and regulatory agencies to synthesize multi-layered environmental evidence and combat unauthorized instream extraction.
@@ -73,14 +72,14 @@ export default function CollaborationPage() {
                 <form onSubmit={handleSubmit} className={styles.form} style={{ maxWidth: '100%' }}>
                   
                   {/* Grid row: Type & Org */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--spacing-4)' }}>
+                  <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label className={styles.label}>Collaborator Category *</label>
                       <select 
                         value={collabType} 
                         onChange={(e) => setCollabType(e.target.value)}
                         className={styles.input}
-                        style={{ background: 'rgba(27, 30, 34, 0.9)' }}
+                        style={{ background: '#faf8f5', color: '#1b2632', border: '1px solid var(--glass-border)' }}
                       >
                         <option value="NGO">NGO / Activist Alliance</option>
                         <option value="Government">Government / Regulatory Agency</option>
@@ -104,7 +103,7 @@ export default function CollaborationPage() {
                   </div>
 
                   {/* Grid row: Contact name & email */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--spacing-4)' }}>
+                  <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label className={styles.label}>Lead Representative Name *</label>
                       <input 
@@ -131,7 +130,7 @@ export default function CollaborationPage() {
                   </div>
 
                   {/* Grid row: Region & Coordinate link */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--spacing-4)' }}>
+                  <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label className={styles.label}>Target Sector / Basin Focus *</label>
                       <input 
@@ -164,7 +163,8 @@ export default function CollaborationPage() {
                       border: '1px dashed var(--glass-border)',
                       padding: 'var(--spacing-4)',
                       textAlign: 'center',
-                      background: 'rgba(27, 30, 34, 0.4)',
+                      background: '#faf8f5',
+                      color: '#1b2632',
                       position: 'relative',
                       cursor: 'pointer'
                     }}>
@@ -224,14 +224,10 @@ export default function CollaborationPage() {
                   <li className={styles.listItem} style={{ fontSize: '12px' }}>
                     <span className={styles.boldText}>Spatial GIS Layers:</span> GeoJSON formats matching the WGS 84 coordinate system.
                   </li>
+                  <li className={styles.listItem} style={{ fontSize: '12px' }}>
+                    <span className={styles.boldText}>Identity &amp; Affiliation Safeguards:</span> Personal identities and institutional affiliation records are kept strictly confidential, isolated in secure sandboxed schemas, and permanently redacted from public telemetry layers.
+                  </li>
                 </ul>
-              </div>
-
-              <div className={styles.consoleLog} style={{ margin: 0 }}>
-                <div className={styles.consoleHeader}>COOPERATIVE_SECURITY_MANIFEST</div>
-                &gt; Secure socket layer (TLS 1.3) fully active.<br />
-                &gt; Media files are processed through automated sandboxed threat scanners.<br />
-                &gt; Personal identity labels are isolated from physical georeferenced database matrices.
               </div>
 
             </div>

@@ -287,8 +287,8 @@ const Navbar = () => {
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="e.g. Field Officer Delta"
                   style={{
-                    background: 'rgba(27, 30, 34, 0.8)',
-                    color: 'var(--color-text-primary)',
+                    background: '#faf8f5',
+                    color: 'var(--color-abyssal-blue)',
                     border: '1px solid var(--glass-border)',
                     borderRadius: '0px',
                     padding: '10px 12px',
@@ -310,8 +310,8 @@ const Navbar = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="operator@network.org"
                   style={{
-                    background: 'rgba(27, 30, 34, 0.8)',
-                    color: 'var(--color-text-primary)',
+                    background: '#faf8f5',
+                    color: 'var(--color-abyssal-blue)',
                     border: '1px solid var(--glass-border)',
                     borderRadius: '0px',
                     padding: '10px 12px',
@@ -333,8 +333,8 @@ const Navbar = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   style={{
-                    background: 'rgba(27, 30, 34, 0.8)',
-                    color: 'var(--color-text-primary)',
+                    background: '#faf8f5',
+                    color: 'var(--color-abyssal-blue)',
                     border: '1px solid var(--glass-border)',
                     borderRadius: '0px',
                     padding: '10px 12px',

@@ -52,7 +52,7 @@ export default function ImpactsPage() {
               {/* Grid of Ecological Impacts */}
               <div className={styles.grid}>
                 <div className={styles.card}>
-                  <div className={styles.cardIcon}>🚜</div>
+                  <div className={styles.cardIcon} style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>SOIL</div>
                   <h3 className={styles.cardTitle}>Severe Bank Erosion</h3>
                   <p className={styles.cardText}>
                     Removing riverbed sand accelerates flow velocities. Fast-moving currents strip away protective soils and vegetation, causing bank collapses and destroying surrounding habitats.
@@ -60,7 +60,7 @@ export default function ImpactsPage() {
                 </div>
 
                 <div className={styles.card}>
-                  <div className={styles.cardIcon}>📉</div>
+                  <div className={styles.cardIcon} style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>FLOW</div>
                   <h3 className={styles.cardTitle}>Channel Destabilization</h3>
                   <p className={styles.cardText}>
                     Dredging creates deep, localized holes, forcing the river to shift its natural course (incising). This channel carving bypasses historic water paths, stranding wetlands and drying out natural secondary streams.
@@ -68,7 +68,7 @@ export default function ImpactsPage() {
                 </div>
 
                 <div className={styles.card}>
-                  <div className={styles.cardIcon}>🐟</div>
+                  <div className={styles.cardIcon} style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>LIFE</div>
                   <h3 className={styles.cardTitle}>Biodiversity Depletion</h3>
                   <p className={styles.cardText}>
                     Excavation clouds water with thick silt (turbidity), blocking sunlight and choking out underwater vegetation. This process blankets fish spawning grounds and destroys nesting areas for vulnerable river species.
@@ -91,7 +91,7 @@ export default function ImpactsPage() {
               {/* Grid of Social Impacts */}
               <div className={styles.grid}>
                 <div className={styles.card}>
-                  <div className={styles.cardIcon}>🌾</div>
+                  <div className={styles.cardIcon} style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>CROP</div>
                   <h3 className={styles.cardTitle}>Agricultural Collapse</h3>
                   <p className={styles.cardText}>
                     As the riverbed drops, nearby groundwater tables drop with it (drawdown). Wells run dry, and farmland soil loses its moisture, causing crop failures and threatening local food security.
@@ -99,7 +99,7 @@ export default function ImpactsPage() {
                 </div>
 
                 <div className={styles.card}>
-                  <div className={styles.cardIcon}>🚰</div>
+                  <div className={styles.cardIcon} style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>WELL</div>
                   <h3 className={styles.cardTitle}>Aquifer Salinization</h3>
                   <p className={styles.cardText}>
                     Stretching natural sand barriers near coasts allows dense sea water to seep inland into freshwater aquifers. This salinization ruins local drinking wells, creating severe water crises for coastal communities.
@@ -107,7 +107,7 @@ export default function ImpactsPage() {
                 </div>
 
                 <div className={styles.card}>
-                  <div className={styles.cardIcon}>🌉</div>
+                  <div className={styles.cardIcon} style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>GRID</div>
                   <h3 className={styles.cardTitle}>Infrastructure Damage</h3>
                   <p className={styles.cardText}>
                     Channel incision and soil loss undermine bridge foundations, flood protection levies, and pipeline supports, creating major structural hazards for public transit and utilities.

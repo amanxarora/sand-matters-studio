@@ -233,9 +233,9 @@
 }
 
 .input, .textarea {
-  background-color: rgba(27, 30, 34, 0.6);
-  color: var(--color-text-primary);
-  border: 1px solid var(--glass-border);
+  background-color: #faf8f5 !important;
+  color: var(--color-abyssal-blue) !important;
+  border: 1px solid var(--glass-border) !important;
   border-radius: var(--border-radius-sm);
   padding: var(--spacing-3);
   font-size: var(--font-size-sm);
@@ -244,8 +244,13 @@
   transition: border-color var(--transition-fast);
 }
 
+.input::placeholder, .textarea::placeholder {
+  color: var(--color-blue-fantastic);
+  opacity: 0.65;
+}
+
 .input:focus, .textarea:focus {
-  border-color: var(--color-accent);
+  border-color: var(--color-accent) !important;
 }
 
 .button {
@@ -289,5 +294,18 @@
 @media (max-width: 768px) {
   .visualGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-4);
+}
+
+@media (max-width: 768px) {
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
   }
 }

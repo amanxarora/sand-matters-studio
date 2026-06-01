@@ -94,7 +94,7 @@ export default function LearningPage() {
                   <div className={styles.card}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-3)' }}>
                       <span style={{ fontSize: '0.72rem', fontFamily: 'monospace', color: 'var(--color-accent)' }}>NDVI INDEX</span>
-                      <span className={styles.cardIcon} style={{ margin: 0, width: '32px', height: '32px' }}>🌿</span>
+                      <span className={styles.cardIcon} style={{ margin: 0, width: '32px', height: '32px', fontSize: '0.8rem', fontWeight: 'bold' }}>VEG</span>
                     </div>
                     <h3 className={styles.cardTitle}>Normalized Difference Vegetation</h3>
                     <div style={{
@@ -120,7 +120,7 @@ export default function LearningPage() {
                   <div className={styles.card}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-3)' }}>
                       <span style={{ fontSize: '0.72rem', fontFamily: 'monospace', color: 'var(--color-accent)' }}>BSI INDEX</span>
-                      <span className={styles.cardIcon} style={{ margin: 0, width: '32px', height: '32px' }}>🧱</span>
+                      <span className={styles.cardIcon} style={{ margin: 0, width: '32px', height: '32px', fontSize: '0.8rem', fontWeight: 'bold' }}>SOIL</span>
                     </div>
                     <h3 className={styles.cardTitle}>Bare Soil Index</h3>
                     <div style={{
@@ -146,7 +146,7 @@ export default function LearningPage() {
                   <div className={styles.card}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-3)' }}>
                       <span style={{ fontSize: '0.72rem', fontFamily: 'monospace', color: 'var(--color-accent)' }}>MNDWI INDEX</span>
-                      <span className={styles.cardIcon} style={{ margin: 0, width: '32px', height: '32px' }}>💧</span>
+                      <span className={styles.cardIcon} style={{ margin: 0, width: '32px', height: '32px', fontSize: '0.8rem', fontWeight: 'bold' }}>H2O</span>
                     </div>
                     <h3 className={styles.cardTitle}>Modified Water Index</h3>
                     <div style={{
