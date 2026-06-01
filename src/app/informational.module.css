@@ -1,0 +1,293 @@
+/* Informational Layout CSS Module (Swiss-Geospatial Matte Theme) */
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-8) var(--spacing-6);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: var(--spacing-8);
+  position: relative;
+  padding: var(--spacing-8) 0;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.heroTagline {
+  color: var(--color-accent);
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-2);
+}
+
+.heroTitle {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-3);
+  letter-spacing: -0.5px;
+}
+
+.heroSubtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Grid & Card Layouts */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+}
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-6);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-4px);
+  background-color: var(--color-surface-hover);
+}
+
+.cardIcon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-4);
+  font-size: 1.25rem;
+}
+
+.cardTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: var(--spacing-2);
+}
+
+.cardText {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+/* Monospace Console Logging block style */
+.consoleLog {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #0c0f12;
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+  padding: var(--spacing-4);
+  color: #a3b8cc;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin: var(--spacing-4) 0;
+  overflow-x: auto;
+}
+
+.consoleHeader {
+  color: var(--color-accent);
+  font-weight: bold;
+  margin-bottom: 6px;
+  border-bottom: 1px dashed rgba(93, 132, 150, 0.25);
+  padding-bottom: 4px;
+}
+
+/* Article Sections */
+.section {
+  margin-bottom: var(--spacing-8);
+}
+
+.sectionHeader {
+  color: var(--color-accent);
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-2);
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-4);
+}
+
+.sectionText {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-4);
+}
+
+/* List details */
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: var(--spacing-4) 0;
+}
+
+.listItem {
+  position: relative;
+  padding-left: var(--spacing-6);
+  margin-bottom: var(--spacing-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.listItem::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.boldText {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* Tab selector */
+.tabContainer {
+  display: flex;
+  gap: var(--spacing-2);
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: var(--spacing-6);
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.tabButton {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-base);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-3) var(--spacing-5);
+  cursor: pointer;
+  border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.tabButton:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-accent-soft);
+}
+
+.tabButtonActive {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+  background-color: var(--color-accent-soft);
+}
+
+/* Form Styles */
+.form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.label {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input, .textarea {
+  background-color: rgba(27, 30, 34, 0.6);
+  color: var(--color-text-primary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-3);
+  font-size: var(--font-size-sm);
+  outline: none;
+  font-family: var(--font-family-base);
+  transition: border-color var(--transition-fast);
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--color-accent);
+}
+
+.button {
+  background-color: var(--color-accent);
+  color: #fff;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-3) var(--spacing-6);
+  font-weight: bold;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  font-family: var(--font-family-base);
+  transition: all var(--transition-fast);
+  letter-spacing: 0.5px;
+}
+
+.button:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.buttonSecondary {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--glass-border);
+}
+
+.buttonSecondary:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-accent);
+}
+
+/* Grid details */
+.visualGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--spacing-6);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .visualGrid {
+    grid-template-columns: 1fr;
+  }
+}

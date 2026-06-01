@@ -1,0 +1,231 @@
+/* Ledger Layout CSS Module (HUD Tactical Sheet) */
+
+.ledgerContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  padding: var(--spacing-4);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Header bar actions */
+.actionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-4);
+}
+
+.searchGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  flex: 1;
+  max-width: 400px;
+}
+
+.searchInput {
+  flex: 1;
+  background-color: rgba(12, 15, 18, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-sm);
+  color: #fff;
+  outline: none;
+  font-family: var(--font-family-base);
+}
+
+.searchInput:focus {
+  border-color: var(--color-accent);
+}
+
+/* Checkbox advanced export panel */
+.exportPanel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.exportLabel {
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.checkboxContainer {
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+  font-family: monospace;
+}
+
+.checkboxLabel:hover {
+  color: var(--color-text-primary);
+}
+
+.checkboxInput {
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+/* The Grid Table */
+.tableWrapper {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-surface);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.th {
+  background-color: rgba(27, 30, 34, 0.9);
+  color: var(--color-accent);
+  font-family: monospace;
+  font-weight: bold;
+  padding: 12px var(--spacing-4);
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tr {
+  border-bottom: 1px solid var(--glass-border);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.tr:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.trSelected {
+  background-color: var(--color-accent-soft) !important;
+  border-left: 3px solid var(--color-accent);
+}
+
+.td {
+  padding: 12px var(--spacing-4);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  vertical-align: middle;
+}
+
+.tdPrimary {
+  font-family: monospace;
+  font-weight: bold;
+  color: var(--color-text-primary);
+}
+
+/* Status badges */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-family: monospace;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.badgeConfirmed {
+  background-color: rgba(16, 185, 129, 0.15);
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.badgePending {
+  background-color: rgba(245, 158, 11, 0.15);
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+.badgeRecovery {
+  background-color: rgba(14, 165, 233, 0.15);
+  border-color: #0ea5e9;
+  color: #0ea5e9;
+}
+
+/* Export CTA button */
+.exportBtn {
+  background-color: var(--color-accent);
+  color: #fff;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--border-radius-sm);
+  padding: 6px 14px;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 0.78rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-fast);
+}
+
+.exportBtn:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.exportBtnDisabled {
+  background-color: var(--color-surface-hover);
+  border-color: var(--glass-border);
+  color: var(--color-text-secondary);
+  cursor: not-allowed;
+}
+
+/* Telemetry print feed logs */
+.telemetryIndicator {
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: var(--color-success);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-success);
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}

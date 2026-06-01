@@ -1,0 +1,39 @@
+.filterBar {
+  position: absolute;
+  top: var(--spacing-4);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--spacing-2);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  padding: var(--spacing-2);
+  border-radius: 50px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-panel);
+  z-index: 10;
+}
+
+.filterChip {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--color-text-secondary);
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.filterChip:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text-primary);
+}
+
+.filterChip.active {
+  background: var(--color-accent);
+  color: #000;
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+}
