@@ -127,7 +127,7 @@ export default function ContactPage() {
                 <div className={styles.cardIcon} style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>HQ</div>
                 <h3 className={styles.cardTitle}>Research Command</h3>
                 <p className={styles.cardText} style={{ fontFamily: 'monospace', fontSize: '0.8rem', lineHeight: '1.6' }}>
-                  <strong>Institute for Advanced Architecture of Catalonia</strong><br />
+                  <strong><a href="https://iaac.net" target="_blank" rel="noreferrer" style={{ color: 'var(--color-text-primary)', textDecoration: 'underline' }}>Institute for Advanced Architecture of Catalonia</a></strong><br />
                   Pujades 102, 08005<br />
                   Barcelona, Spain<br />
                   <span style={{ color: 'var(--color-accent)' }}>Lat: 41.3976, Lng: 2.1932</span>

@@ -275,9 +275,14 @@ export default function HomePage() {
                 <h3 className={styles.warningTitle} style={{ fontSize: '1.2rem', marginTop: '4px' }}>
                   Report Sand Activity
                 </h3>
-                <p className={styles.warningText} style={{ fontSize: '14px', lineHeight: '1.6', marginBottom: '0' }}>
+                <p className={styles.warningText} style={{ fontSize: '14px', lineHeight: '1.6', marginBottom: 'var(--spacing-4)' }}>
                   Protecting riverine corridors requires immediate local coordination and crowdsourced ground-truth verification. Local observers, citizen scientists, and environmental wardens can submit specific decimal coordinate points of suspected mining activity, supplemented by geotagged, time-stamped mobile photography. Upon submission, our backend automatically registers these points as Regions of Interest (ROIs), triggering an immediate spectral audit of historical and recent satellite imagery. By calculating localized Bare Soil Index (BSI) and MNDWI water boundary shifts over the specified coordinate quadrants, the system generates a standardized, chronological evidentiary dossier ready for local legal advocacy and public disclosure.
                 </p>
+                <div style={{ marginTop: 'auto' }}>
+                  <Link href="/collaboration" className={styles.button} style={{ display: 'inline-block', textAlign: 'center', width: '100%' }}>
+                    Report
+                  </Link>
+                </div>
               </div>
 
             </div>

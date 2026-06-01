@@ -458,17 +458,17 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                 <VisualSlider 
                   imageBefore={
                     activeSpectralIndex === 'ndvi' 
-                      ? 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80' 
+                      ? properties.ndvi_baseline_url || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80' 
                       : activeSpectralIndex === 'bsi'
-                        ? 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80'
-                        : 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=600&q=80'
+                        ? properties.bsi_baseline_url || 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80'
+                        : properties.mndwi_baseline_url || 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=600&q=80'
                   }
                   imageAfter={
                     activeSpectralIndex === 'ndvi'
-                      ? 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80'
+                      ? properties.ndvi_compare_url || 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80'
                       : activeSpectralIndex === 'bsi'
-                        ? 'https://images.unsplash.com/photo-1509316975850-ff9c5edd0ea9?auto=format&fit=crop&w=600&q=80'
-                        : 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=600&q=80'
+                        ? properties.bsi_compare_url || 'https://images.unsplash.com/photo-1509316975850-ff9c5edd0ea9?auto=format&fit=crop&w=600&q=80'
+                        : properties.mndwi_compare_url || 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=600&q=80'
                   }
                   labelBefore={`GEE [${startYear}]`}
                   labelAfter={`GEE [${endYear}]`}

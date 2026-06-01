@@ -51,7 +51,6 @@ export default function CollaborationPage() {
               borderRadius: '0px', // Strict Ethereal Zero Radius
               padding: 'var(--spacing-6)'
             }}>
-              <div className={styles.sectionHeader}>COLLABORATION PROTOCOL REGISTRATION</div>
               <h2 className={styles.sectionTitle} style={{ fontSize: '1.25rem', marginBottom: 'var(--spacing-5)' }}>
                 Cooperative Telemetry Registry
               </h2>
@@ -79,7 +78,6 @@ export default function CollaborationPage() {
                         value={collabType} 
                         onChange={(e) => setCollabType(e.target.value)}
                         className={styles.input}
-                        style={{ background: '#faf8f5', color: '#1b2632', border: '1px solid var(--glass-border)' }}
                       >
                         <option value="NGO">NGO / Activist Alliance</option>
                         <option value="Government">Government / Regulatory Agency</option>
@@ -90,7 +88,7 @@ export default function CollaborationPage() {
                     </div>
 
                     <div className={styles.formGroup}>
-                      <label className={styles.label}>Organization / Institution Name *</label>
+                      <label className={styles.label}>Organization Name *</label>
                       <input 
                         type="text" 
                         required 
@@ -105,7 +103,7 @@ export default function CollaborationPage() {
                   {/* Grid row: Contact name & email */}
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label className={styles.label}>Lead Representative Name *</label>
+                      <label className={styles.label}>Representative Name *</label>
                       <input 
                         type="text" 
                         required 
@@ -117,7 +115,7 @@ export default function CollaborationPage() {
                     </div>
 
                     <div className={styles.formGroup}>
-                      <label className={styles.label}>Secure Communication Channel *</label>
+                      <label className={styles.label}>Contact Email *</label>
                       <input 
                         type="email" 
                         required 
@@ -132,7 +130,7 @@ export default function CollaborationPage() {
                   {/* Grid row: Region & Coordinate link */}
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label className={styles.label}>Target Sector / Basin Focus *</label>
+                      <label className={styles.label}>Hydrological Focus *</label>
                       <input 
                         type="text" 
                         required 
@@ -144,7 +142,7 @@ export default function CollaborationPage() {
                     </div>
 
                     <div className={styles.formGroup}>
-                      <label className={styles.label}>Coordinates Locking (Lat/Lng) *</label>
+                      <label className={styles.label}>Coordinates (Lat/Lng) *</label>
                       <input 
                         type="text" 
                         required 

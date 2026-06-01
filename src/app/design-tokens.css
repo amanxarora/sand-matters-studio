@@ -1,4 +1,4 @@
-:root, .dark {
+:root {
   /* Palette Colors from the visual swatch image */
   --color-palladian: #EEE9DF;
   --color-oatmeal: #C9C1B1;
@@ -7,6 +7,56 @@
   --color-truffle-trouble: #A35139;
   --color-abyssal-blue: #1B2632;
 
+  /* Colors - Default / Light Mode (Ethereal Formalism Light Variation) */
+  --color-background: var(--color-palladian); /* #EEE9DF */
+  --color-surface: #FAF8F5; /* Crisp warm off-white surface */
+  --color-surface-hover: rgba(201, 193, 177, 0.25);
+  --color-text-primary: var(--color-abyssal-blue); /* #1B2632 */
+  --color-text-secondary: var(--color-blue-fantastic); /* #2C3B4D */
+  
+  --color-accent: var(--color-blue-fantastic); /* #2C3B4D */
+  --color-accent-hover: var(--color-abyssal-blue); /* #1B2632 */
+  --color-accent-soft: rgba(44, 59, 77, 0.1);
+
+  --color-success: #059669;
+  --color-warning: var(--color-burning-flame);
+  --color-danger: var(--color-truffle-trouble);
+
+  /* Bounding Hairlines / Glassmorphism */
+  --glass-bg: rgba(250, 248, 245, 0.85);
+  --glass-border: rgba(44, 59, 77, 0.15); /* Blue Fantastic translucent line */
+  --glass-blur: 24px;
+  --shadow-panel: none; /* Forbidden shadows */
+  
+  --color-map-mask: rgba(238, 233, 223, 0.85); /* Light mask matching Palladian */
+}
+
+.light {
+  /* Enforce Light Mode Variables */
+  --color-background: var(--color-palladian); /* #EEE9DF */
+  --color-surface: #FAF8F5; /* Crisp warm off-white surface */
+  --color-surface-hover: rgba(201, 193, 177, 0.25);
+  --color-text-primary: var(--color-abyssal-blue); /* #1B2632 */
+  --color-text-secondary: var(--color-blue-fantastic); /* #2C3B4D */
+  
+  --color-accent: var(--color-blue-fantastic); /* #2C3B4D */
+  --color-accent-hover: var(--color-abyssal-blue); /* #1B2632 */
+  --color-accent-soft: rgba(44, 59, 77, 0.1);
+
+  --color-success: #059669;
+  --color-warning: var(--color-burning-flame);
+  --color-danger: var(--color-truffle-trouble);
+
+  /* Bounding Hairlines / Glassmorphism */
+  --glass-bg: rgba(250, 248, 245, 0.85);
+  --glass-border: rgba(44, 59, 77, 0.15); /* Blue Fantastic translucent line */
+  --glass-blur: 24px;
+  --shadow-panel: none; /* Forbidden shadows */
+  
+  --color-map-mask: rgba(238, 233, 223, 0.85); /* Light mask matching Palladian */
+}
+
+.dark {
   /* Colors - Dark Mode (Ethereal Formalism Dark Variation) */
   --color-background: var(--color-abyssal-blue); /* #1B2632 */
   --color-surface: rgba(44, 59, 77, 0.4); /* Blue Fantastic translucent base */
@@ -29,39 +79,6 @@
   --shadow-panel: none; /* Forbidden shadows */
   
   --color-map-mask: rgba(27, 38, 50, 0.85); /* Dark mask matching Abyssal */
-}
-
-.light {
-  /* Palette Colors from the visual swatch image */
-  --color-palladian: #EEE9DF;
-  --color-oatmeal: #C9C1B1;
-  --color-blue-fantastic: #2C3B4D;
-  --color-burning-flame: #FFB162;
-  --color-truffle-trouble: #A35139;
-  --color-abyssal-blue: #1B2632;
-
-  /* Colors - Light Mode (Ethereal Formalism Light Variation) */
-  --color-background: var(--color-palladian); /* #EEE9DF */
-  --color-surface: #FAF8F5; /* Crisp warm off-white surface */
-  --color-surface-hover: rgba(201, 193, 177, 0.25);
-  --color-text-primary: var(--color-abyssal-blue); /* #1B2632 */
-  --color-text-secondary: var(--color-blue-fantastic); /* #2C3B4D */
-  
-  --color-accent: var(--color-blue-fantastic); /* #2C3B4D */
-  --color-accent-hover: var(--color-abyssal-blue); /* #1B2632 */
-  --color-accent-soft: rgba(44, 59, 77, 0.1);
-
-  --color-success: #059669;
-  --color-warning: var(--color-burning-flame);
-  --color-danger: var(--color-truffle-trouble);
-
-  /* Bounding Hairlines / Glassmorphism */
-  --glass-bg: rgba(250, 248, 245, 0.85);
-  --glass-border: rgba(44, 59, 77, 0.15); /* Blue Fantastic translucent line */
-  --glass-blur: 24px;
-  --shadow-panel: none; /* Forbidden shadows */
-  
-  --color-map-mask: rgba(238, 233, 223, 0.85); /* Light mask matching Palladian */
 }
 
 :root {
