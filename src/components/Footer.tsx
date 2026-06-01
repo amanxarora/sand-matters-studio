@@ -43,36 +43,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Links: Careers */}
-        <div>
-          <h4 style={{ color: 'var(--color-text-primary)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 'var(--spacing-3)' }}>
-            Careers
-          </h4>
-          <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <li>
-              <Link href="/careers" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)', textDecoration: 'none' }}
-                 onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
-                 onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
-                INTERN: Research Positions
-              </Link>
-            </li>
-            <li>
-              <Link href="/careers" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)', textDecoration: 'none' }}
-                 onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
-                 onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
-                JOBS: Engineering Openings
-              </Link>
-            </li>
-            <li>
-              <Link href="/careers" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)', textDecoration: 'none' }}
-                 onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
-                 onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
-                Volunteer GIS Warden
-              </Link>
-            </li>
-          </ul>
-        </div>
-
         {/* Links: Support Us */}
         <div>
           <h4 style={{ color: 'var(--color-text-primary)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 'var(--spacing-3)' }}>
@@ -80,7 +50,7 @@ export default function Footer() {
           </h4>
           <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <li>
-              <Link href="/support" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)', textDecoration: 'none' }}
+              <Link href="/collaboration" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)', textDecoration: 'none' }}
                  onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
                  onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
                 COLLAB: NGO Alliances

@@ -259,9 +259,14 @@ export default function HomePage() {
                 <h3 className={styles.warningTitle} style={{ fontSize: '1.2rem', marginTop: '4px' }}>
                   Why This Website?
                 </h3>
-                <p className={styles.warningText} style={{ fontSize: '14px', lineHeight: '1.6', marginBottom: '0' }}>
+                <p className={styles.warningText} style={{ fontSize: '14px', lineHeight: '1.6', marginBottom: 'var(--spacing-4)' }}>
                   Sand Matters Studio was established to bridge the critical gap between localized environmental destruction and institutional enforcement inertia. Traditional regulatory monitoring of sand extraction is often hindered by remote geolocations, resource constraints, and bureaucratic delays. By democratizing high-fidelity satellite telemetry and automation pipelines, this open-source node equips civic defenders with objective, empirical evidence. Utilizing predictable Sentinel-2 and Landsat orbital schedules, we convert raw spectral reflectance data into auditable temporal records, enabling community leaders and investigative journalists to validate environmental complaints, expose unregulated extraction hotspots, and force accountability through undeniable geospatial proof.
                 </p>
+                <div style={{ marginTop: 'auto' }}>
+                  <Link href="/console" className={styles.button} style={{ display: 'inline-block', textAlign: 'center', width: '100%' }}>
+                    Try Our Tool
+                  </Link>
+                </div>
               </div>
 
               {/* Report Sand Activity Card (Secure Civic Submission) */}

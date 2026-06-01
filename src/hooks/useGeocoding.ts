@@ -57,16 +57,24 @@ export const useGeocoding = () => {
       // Overpass bbox format is [minLat, minLng, maxLat, maxLng]
       const overpassBbox = `${bbox[1]},${bbox[0]},${bbox[3]},${bbox[2]}`;
       
-      // Query for waterways (rivers) that have a name
+      // Query for waterways (rivers, canals, riverbanks) inside ROI
       const query = `
         [out:json][timeout:25];
-        way["waterway"="river"]["name"](${overpassBbox});
+        (
+          way["waterway"="river"](${overpassBbox});
+          way["waterway"="riverbank"](${overpassBbox});
+          way["waterway"="canal"](${overpassBbox});
+        );
         out geom;
       `;
       
-      const res = await fetch('https://overpass-api.de/api/interpreter', {
+      // Use Kumi Systems public overpass instance which does not block browser user-agents
+      const res = await fetch('https://overpass.kumi.systems/api/interpreter', {
         method: 'POST',
-        body: query
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({ data: query })
       });
       
       if (!res.ok) throw new Error("Failed to fetch rivers from Overpass");
@@ -80,7 +88,7 @@ export const useGeocoding = () => {
           type: "Feature",
           properties: {
             id: el.id,
-            name: el.tags.name,
+            name: el.tags.name || el.tags.name_en || el.tags.official_name || 'Unnamed Waterway',
             waterway: el.tags.waterway
           },
           geometry: {
@@ -120,9 +128,13 @@ export const useGeocoding = () => {
         out body;
       `;
       
-      const res = await fetch('https://overpass-api.de/api/interpreter', {
+      // Use Kumi Systems public overpass instance which does not block browser user-agents
+      const res = await fetch('https://overpass.kumi.systems/api/interpreter', {
         method: 'POST',
-        body: query
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({ data: query })
       });
       
       if (!res.ok) throw new Error("Failed to fetch nearby places");
