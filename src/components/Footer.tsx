@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -42,92 +43,62 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Links: Intern & Jobs */}
+        {/* Links: Careers */}
         <div>
           <h4 style={{ color: 'var(--color-text-primary)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 'var(--spacing-3)' }}>
             Careers
           </h4>
           <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <li>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)' }}
+              <Link href="/careers" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)', textDecoration: 'none' }}
                  onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
                  onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
                 INTERN: Research Positions
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)' }}
+              <Link href="/careers" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)', textDecoration: 'none' }}
                  onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
                  onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
                 JOBS: Engineering Openings
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)' }}
+              <Link href="/careers" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)', textDecoration: 'none' }}
                  onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
                  onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
                 Volunteer GIS Warden
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
 
-        {/* Links: Collab & Fund */}
+        {/* Links: Support Us */}
         <div>
           <h4 style={{ color: 'var(--color-text-primary)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 'var(--spacing-3)' }}>
             Support Us
           </h4>
           <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <li>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)' }}
+              <Link href="/support" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)', textDecoration: 'none' }}
                  onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
                  onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
                 COLLAB: NGO Alliances
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)' }}
+              <Link href="/support" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)', textDecoration: 'none' }}
                  onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
                  onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
                 FUND: Donate to Research
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)' }}
+              <Link href="/support" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)', textDecoration: 'none' }}
                  onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
                  onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
                 Sponsor Imagery Passes
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        {/* Links: Socials */}
-        <div>
-          <h4 style={{ color: 'var(--color-text-primary)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 'var(--spacing-3)' }}>
-            Telemetry Socials
-          </h4>
-          <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <li>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)' }}
-                 onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
-                 onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
-                SOCIALS: GitHub Portal
-              </a>
-            </li>
-            <li>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)' }}
-                 onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
-                 onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
-                Environmental Discord
-              </a>
-            </li>
-            <li>
-              <a href="#" style={{ color: 'var(--color-text-secondary)', transition: 'var(--transition-fast)' }}
-                 onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
-                 onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
-                Geospatial Matrix Feed
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -149,17 +120,17 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Sand Matters Studio. Decentralized Ecosystem Sentinel.
         </div>
         <div style={{ display: 'flex', gap: 'var(--spacing-4)' }}>
-          <a href="#" style={{ color: 'var(--color-text-secondary)' }}
+          <Link href="/gdpr" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none' }}
              onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
              onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
             GDPR Compliance
-          </a>
+          </Link>
           <span>&middot;</span>
-          <a href="#" style={{ color: 'var(--color-text-secondary)' }}
+          <Link href="/terms" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none' }}
              onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
              onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
             Terms & Disclaimers
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

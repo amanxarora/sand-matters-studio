@@ -390,7 +390,7 @@
 .carouselContainer {
   position: relative;
   width: 100%;
-  height: calc(100vh - var(--navbar-height)); /* Full viewport height minus navbar */
+  height: 65vh; /* Reduced height to make the layout under the carousel visible in initial viewport */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -415,6 +415,24 @@
   text-align: left; /* Justified on the left */
   padding: 80px 100px 100px 100px; /* Aligned beautifully with arrow margins */
   z-index: 1;
+}
+
+/* Pseudo-element gradient overlay drawn ON TOP of the natural bright image */
+.slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to top,
+    rgba(27, 38, 50, 0.95) 0%,     /* Deeper base for text overlay */
+    rgba(27, 38, 50, 0.6) 55%,      /* Pushed higher up with premium opacity */
+    transparent 95%                 /* Increased height fading out smoothly */
+  ) !important;
+  z-index: 1;                    /* Draws on top of the background image (z-index: -1) */
+  pointer-events: none;          /* Lets clicks pass through */
 }
 
 .activeSlide {

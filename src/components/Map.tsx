@@ -169,9 +169,9 @@ const MapComponent = () => {
     };
     
     // Add Search Bar FIRST so it appears on top
-    map.current.addControl(new MaplibreGeocoder(geocoderApi as any, { maplibregl: maplibregl }) as any, 'top-right');
+    map.current.addControl(new MaplibreGeocoder(geocoderApi as any, { maplibregl: maplibregl }) as any, 'top-left');
     // Add Navigation SECOND so it appears below the search bar
-    map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
+    map.current.addControl(new maplibregl.NavigationControl(), 'top-left');
 
     map.current.on('load', async () => {
       if (!map.current) return;

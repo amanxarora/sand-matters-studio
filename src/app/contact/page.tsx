@@ -32,7 +32,7 @@ export default function ContactPage() {
         <div className={styles.container}>
           {/* Hero Section */}
           <div className={styles.hero}>
-            <div className={styles.heroTagline}>[ OPERATIONAL INTERFACE: SECURE INQUIRY ]</div>
+            <div className={styles.heroTagline}>OPERATIONAL INTERFACE: SECURE INQUIRY</div>
             <h1 className={styles.heroTitle}>Establish Secure Communications</h1>
             <p className={styles.heroSubtitle}>
               Connect with our research coordinators, submit ground-truth field records, or coordinate environmental advocacy partnerships.
@@ -47,7 +47,7 @@ export default function ContactPage() {
               borderRadius: 'var(--border-radius-md)',
               padding: 'var(--spacing-6)'
             }}>
-              <div className={styles.sectionHeader}>// SECURE COMMUNICATION CHANNELS //</div>
+              <div className={styles.sectionHeader}>SECURE COMMUNICATION CHANNELS</div>
               <h2 className={styles.sectionTitle} style={{ fontSize: '1.25rem', marginBottom: 'var(--spacing-5)' }}>Transmit Data Packet</h2>
               
               {success ? (
@@ -115,7 +115,7 @@ export default function ContactPage() {
                   </div>
 
                   <button type="submit" className={styles.button}>
-                    [ TRANSMIT PACKET ]
+                    TRANSMIT PACKET
                   </button>
                 </form>
               )}
@@ -143,10 +143,10 @@ export default function ContactPage() {
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <a href="https://iaac.net" target="_blank" rel="noreferrer" className={`${styles.button} ${styles.buttonSecondary}`} style={{ textAlign: 'center', fontSize: '0.78rem' }}>
-                    [ VISIT IAAC ACADEMIC SITE ]
+                    VISIT IAAC ACADEMIC SITE
                   </a>
                   <a href="#" className={`${styles.button} ${styles.buttonSecondary}`} style={{ textAlign: 'center', fontSize: '0.78rem' }}>
-                    [ LOAD LOCAL IAAC TELEMETRY MAP ]
+                    LOAD LOCAL IAAC TELEMETRY MAP
                   </a>
                 </div>
               </div>

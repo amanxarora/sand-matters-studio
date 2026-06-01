@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import { ThemeProvider } from '../context/ThemeContext';
 import { AuthProvider } from '../context/AuthContext';
+import SmoothScrollWrapper from '../components/SmoothScrollWrapper';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient({
@@ -20,9 +21,12 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <ThemeProvider>
-          {children}
+          <SmoothScrollWrapper>
+            {children}
+          </SmoothScrollWrapper>
         </ThemeProvider>
       </AuthProvider>
     </QueryClientProvider>
   );
 }
+

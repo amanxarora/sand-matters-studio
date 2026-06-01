@@ -14,7 +14,7 @@ export default function AboutPage() {
         <div className={styles.container}>
           {/* Hero Section */}
           <div className={styles.hero}>
-            <div className={styles.heroTagline}>[ OPERATIONAL CLASSIFICATION: PROJECT CONTEXT ]</div>
+            <div className={styles.heroTagline}>OPERATIONAL CLASSIFICATION: PROJECT CONTEXT</div>
             <h1 className={styles.heroTitle}>Exposing Environmental Alterations From Afar</h1>
             <p className={styles.heroSubtitle}>
               Exposing the patterns of unauthorized sand extraction in fragile riverbeds through Google Earth Engine telemetry, machine learning models, and public advocacy.
@@ -23,7 +23,7 @@ export default function AboutPage() {
 
           {/* Mission Description */}
           <div className={styles.section}>
-            <div className={styles.sectionHeader}>// THE MISSION //</div>
+            <div className={styles.sectionHeader}>THE MISSION</div>
             <h2 className={styles.sectionTitle}>Democratizing Environmental Oversight</h2>
             <p className={styles.sectionText}>
               Illegal river sand mining in India is widespread and heavily organized. Weak governance, inadequate physical surveillance, and powerful vested interests allow deep, destructive dredging to operate without public accountability. Traditional monitoring systems often fail to deliver sustained, actionable results due to lack of accessibility or systematic data transparency.
@@ -69,7 +69,7 @@ export default function AboutPage() {
             marginTop: 'var(--spacing-8)'
           }}>
             <div className={styles.sectionHeader} style={{ color: 'var(--color-accent)' }}>
-              // ACADEMIC & INSTITUTIONAL PARTNERSHIP //
+              ACADEMIC & INSTITUTIONAL PARTNERSHIP
             </div>
             <h2 className={styles.sectionTitle} style={{ fontSize: '1.5rem', marginTop: '4px' }}>
               Institute for Advanced Architecture of Catalonia (IAAC)

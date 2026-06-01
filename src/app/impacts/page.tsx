@@ -16,7 +16,7 @@ export default function ImpactsPage() {
         <div className={styles.container}>
           {/* Hero Section */}
           <div className={styles.hero}>
-            <div className={styles.heroTagline}>[ OPERATIONAL LEDGER: ECOLOGICAL DAMAGE ]</div>
+            <div className={styles.heroTagline}>OPERATIONAL LEDGER: ECOLOGICAL DAMAGE</div>
             <h1 className={styles.heroTitle}>Environmental &amp; Social Realities</h1>
             <p className={styles.heroSubtitle}>
               Cataloguing the destructive footprints of unregulated sand extraction on India's river ecosystems, coastal aquifers, and local communities.
@@ -29,20 +29,20 @@ export default function ImpactsPage() {
               className={`${styles.tabButton} ${activeTab === 'ecological' ? styles.tabButtonActive : ''}`}
               onClick={() => setActiveTab('ecological')}
             >
-              [ ECOLOGICAL DEGRADATION ]
+              ECOLOGICAL DEGRADATION
             </button>
             <button 
               className={`${styles.tabButton} ${activeTab === 'social' ? styles.tabButtonActive : ''}`}
               onClick={() => setActiveTab('social')}
             >
-              [ SOCIAL &amp; AGRICULTURAL DESTABILIZATION ]
+              SOCIAL &amp; AGRICULTURAL DESTABILIZATION
             </button>
           </div>
 
           {activeTab === 'ecological' && (
             <div className="tab-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
               <div className={styles.section}>
-                <div className={styles.sectionHeader}>// ECOSYSTEM COLLAPSE //</div>
+                <div className={styles.sectionHeader}>ECOSYSTEM COLLAPSE</div>
                 <h2 className={styles.sectionTitle}>Severe Riverine &amp; Coastal Alterations</h2>
                 <p className={styles.sectionText}>
                   River sand is a crucial natural filter and a stabilizing force for hydrologic basins. Uncontrolled extraction strips the riverbed, triggering deep changes in biological and geomorphological structures.
@@ -81,7 +81,7 @@ export default function ImpactsPage() {
           {activeTab === 'social' && (
             <div className="tab-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
               <div className={styles.section}>
-                <div className={styles.sectionHeader}>// COMMUNITIES AT RISK //</div>
+                <div className={styles.sectionHeader}>COMMUNITIES AT RISK</div>
                 <h2 className={styles.sectionTitle}>Loss of Livelihoods and Structural Hazards</h2>
                 <p className={styles.sectionText}>
                   The costs of sand mining go far beyond the riverbanks. Local farmers, coastal villages, and municipal structures bear the immediate physical and financial burdens of this unregulated industry.

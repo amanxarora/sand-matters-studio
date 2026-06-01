@@ -25,7 +25,7 @@ export default function LearningPage() {
         <div className={styles.container}>
           {/* Hero Section */}
           <div className={styles.hero}>
-            <div className={styles.heroTagline}>[ TECHNICAL CLEARANCE: LEVEL_4_METHODOLOGY ]</div>
+            <div className={styles.heroTagline}>TECHNICAL CLEARANCE: LEVEL_4_METHODOLOGY</div>
             <h1 className={styles.heroTitle}>Earth Engine Science &amp; Neural Inference</h1>
             <p className={styles.heroSubtitle}>
               Understanding how multi-spectral orbital reflectance maps and deep computer vision models combine to expose sand excavation patterns.
@@ -38,13 +38,13 @@ export default function LearningPage() {
               className={`${styles.tabButton} ${activeTab === 'indices' ? styles.tabButtonActive : ''}`}
               onClick={() => setActiveTab('indices')}
             >
-              [ ORBITAL SPECTRAL INDICES ]
+              ORBITAL SPECTRAL INDICES
             </button>
             <button 
               className={`${styles.tabButton} ${activeTab === 'yolo' ? styles.tabButtonActive : ''}`}
               onClick={() => setActiveTab('yolo')}
             >
-              [ YOLOv8 COMPUTER VISION ]
+              YOLOv8 COMPUTER VISION
             </button>
           </div>
 
@@ -53,7 +53,7 @@ export default function LearningPage() {
               
               {/* Copernicus Section */}
               <div className={styles.section}>
-                <div className={styles.sectionHeader}>// SENSOR CONSTALLATIONS //</div>
+                <div className={styles.sectionHeader}>SENSOR CONSTALLATIONS</div>
                 <h2 className={styles.sectionTitle}>Copernicus Sentinel-2 &amp; Landsat-9 Telemetry</h2>
                 <p className={styles.sectionText}>
                   Remote sensing maps reflected electromagnetic radiation across discrete wavelengths. Sentinel-2's Multi-Spectral Instrument (MSI) captures 13 spectral bands, from visible light to shortwave infrared, permitting us to isolate ground transitions like vegetation thinning, open water shifts, and sand exposure.
@@ -86,14 +86,14 @@ export default function LearningPage() {
 
               {/* Spectral Formulas */}
               <div className={styles.section}>
-                <div className={styles.sectionHeader}>// MATHEMATICAL SYNTHESIS //</div>
+                <div className={styles.sectionHeader}>MATHEMATICAL SYNTHESIS</div>
                 <h2 className={styles.sectionTitle}>Calculated Biophysical Indices</h2>
                 <div className={styles.grid}>
                   
                   {/* NDVI Card */}
                   <div className={styles.card}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-3)' }}>
-                      <span style={{ fontSize: '0.72rem', fontFamily: 'monospace', color: 'var(--color-accent)' }}>[ NDVI INDEX ]</span>
+                      <span style={{ fontSize: '0.72rem', fontFamily: 'monospace', color: 'var(--color-accent)' }}>NDVI INDEX</span>
                       <span className={styles.cardIcon} style={{ margin: 0, width: '32px', height: '32px' }}>🌿</span>
                     </div>
                     <h3 className={styles.cardTitle}>Normalized Difference Vegetation</h3>
@@ -119,7 +119,7 @@ export default function LearningPage() {
                   {/* BSI Card */}
                   <div className={styles.card}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-3)' }}>
-                      <span style={{ fontSize: '0.72rem', fontFamily: 'monospace', color: 'var(--color-accent)' }}>[ BSI INDEX ]</span>
+                      <span style={{ fontSize: '0.72rem', fontFamily: 'monospace', color: 'var(--color-accent)' }}>BSI INDEX</span>
                       <span className={styles.cardIcon} style={{ margin: 0, width: '32px', height: '32px' }}>🧱</span>
                     </div>
                     <h3 className={styles.cardTitle}>Bare Soil Index</h3>
@@ -145,7 +145,7 @@ export default function LearningPage() {
                   {/* MNDWI Card */}
                   <div className={styles.card}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-3)' }}>
-                      <span style={{ fontSize: '0.72rem', fontFamily: 'monospace', color: 'var(--color-accent)' }}>[ MNDWI INDEX ]</span>
+                      <span style={{ fontSize: '0.72rem', fontFamily: 'monospace', color: 'var(--color-accent)' }}>MNDWI INDEX</span>
                       <span className={styles.cardIcon} style={{ margin: 0, width: '32px', height: '32px' }}>💧</span>
                     </div>
                     <h3 className={styles.cardTitle}>Modified Water Index</h3>
@@ -179,7 +179,7 @@ export default function LearningPage() {
               
               {/* YOLO Architecture Section */}
               <div className={styles.section}>
-                <div className={styles.sectionHeader}>// OBJECT DETECTION PIPELINE //</div>
+                <div className={styles.sectionHeader}>OBJECT DETECTION PIPELINE</div>
                 <h2 className={styles.sectionTitle}>Ultralytics YOLOv8 Neural Architecture</h2>
                 <p className={styles.sectionText}>
                   Orbital indexes map changes on the ground, but locating active machinery requires computer vision. We deploy a customized **YOLOv8 (You Only Look Once)** deep learning classifier trained over high-resolution aerial datasets exported via **Roboflow**.
@@ -191,25 +191,25 @@ export default function LearningPage() {
 
               {/* Console logs */}
               <div className={styles.section}>
-                <div className={styles.sectionHeader}>// YOLO LIVE PROCESSING LOG //</div>
+                <div className={styles.sectionHeader}>YOLO LIVE PROCESSING LOG</div>
                 <div className={styles.consoleLog}>
                   <div className={styles.consoleHeader}>COGNITIVE_SUB_SYSTEM_INFERENCE_ENGAGED</div>
-                  &gt; LOADING WEIGHTS: YOLOv8 Object Detection Engine [v2i.yolov8.sand-mining]<br />
+                  &gt; LOADING WEIGHTS: YOLOv8 Object Detection Engine v2i.yolov8.sand-mining<br />
                   &gt; RESOLVING RASTER TILE COMPRESSION RATE: 416x416 spatial grids<br />
                   &gt; RUNNING BATCH MATRIX COMPILATION...<br />
-                  &gt;&gt; TILE [001/064]: Detected anchor class 'dredger_barge' at 89.4% confidence<br />
-                  &gt;&gt; TILE [012/064]: Detected anchor class 'haul_road' at 92.1% confidence<br />
-                  &gt;&gt; TILE [028/064]: Detected anchor class 'sand_stockpile' at 78.5% confidence<br />
-                  &gt;&gt; TILE [043/064]: Detected anchor class 'excavator' at 86.2% confidence<br />
-                  &gt; SYNTHESIZING BOUNDING POLYGONS: [4] targets recorded.<br />
+                  &gt;&gt; TILE 001/064: Detected anchor class 'dredger_barge' at 89.4% confidence<br />
+                  &gt;&gt; TILE 012/064: Detected anchor class 'haul_road' at 92.1% confidence<br />
+                  &gt;&gt; TILE 028/064: Detected anchor class 'sand_stockpile' at 78.5% confidence<br />
+                  &gt;&gt; TILE 043/064: Detected anchor class 'excavator' at 86.2% confidence<br />
+                  &gt; SYNTHESIZING BOUNDING POLYGONS: 4 targets recorded.<br />
                   &gt; EXPORTING POSTGIS VECTOR GEOMETRIES: Coordinate mapping completed.<br />
-                  [INFERENCE SESSION LOCKED // ORBITAL SYNC OK]
+                  INFERENCE SESSION LOCKED ORBITAL SYNC OK
                 </div>
               </div>
 
               {/* Confidence parameters */}
               <div className={styles.section}>
-                <div className={styles.sectionHeader}>// MODEL BOUNDARIES //</div>
+                <div className={styles.sectionHeader}>MODEL BOUNDARIES</div>
                 <h2 className={styles.sectionTitle}>Classification &amp; Evidentiary Thresholds</h2>
                 <div className={styles.grid}>
                   <div className={styles.card}>
