@@ -1,10 +1,7 @@
 import React, { useMemo } from 'react';
 import styles from './SiteDetailPanel.module.css';
 import { useSiteDetails } from '../hooks/useSites';
-import TemporalSlider from './TemporalSlider';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-
-import VisualSlider from './VisualSlider';
 
 interface SiteDetailPanelProps {
   siteId: string | null;
@@ -43,18 +40,6 @@ const SiteDetailPanel: React.FC<SiteDetailPanelProps> = ({ siteId, onClose }) =>
 
       {details && !loading && !error && (
         <div className={styles.content}>
-          {/* Visual Swiper Slider at the Top */}
-          <div style={{ marginBottom: 'var(--spacing-4)' }}>
-            <VisualSlider 
-              imageBefore={details.images?.['1987']} 
-              imageAfter={details.images?.['2026']}
-              labelBefore="SENTINEL-2 [1987]"
-              labelAfter="SENTINEL-2 [2026]"
-              title="HISTORICAL RETICLE SWIPE"
-              coordinates={`${details.coordinates?.[1]?.toFixed(4) || '22.5937'}° N, ${details.coordinates?.[0]?.toFixed(4) || '78.9629'}° E`}
-            />
-          </div>
-
           <div className={styles.statusBadge}>
             {details.status}
           </div>
@@ -94,20 +79,6 @@ const SiteDetailPanel: React.FC<SiteDetailPanelProps> = ({ siteId, onClose }) =>
                 </LineChart>
               </ResponsiveContainer>
             </div>
-          </div>
-
-          <div className={styles.section}>
-            <h3>Historical Timeline</h3>
-            {details.images && details.images['1987'] && details.images['2026'] ? (
-              <TemporalSlider 
-                imageBefore={details.images['1987']} 
-                imageAfter={details.images['2026']} 
-              />
-            ) : (
-              <div className={styles.placeholderTimeline}>
-                <p>Imagery data unavailable</p>
-              </div>
-            )}
           </div>
         </div>
       )}
