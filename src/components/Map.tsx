@@ -215,12 +215,32 @@ const MapComponent = () => {
         }
       }, firstLayerId);
 
-      // Hide all standard vector fill and background layers to let satellite image show through
+      // Hide all standard vector fill, background, and line layers, plus road labels, to let satellite image show through cleanly
       styleLayers.forEach(layer => {
-        if ((layer.type === 'fill' || layer.type === 'background') && 
-            layer.id !== 'analyzed-regions-layer' && 
-            layer.id !== 'roi-gee-raster-layer') {
-          map.current?.setLayoutProperty(layer.id, 'visibility', 'none');
+        const isProtected = layer.id === 'analyzed-regions-layer' || 
+                            layer.id === 'analyzed-regions-outline' ||
+                            layer.id === 'roi-gee-raster-layer' || 
+                            layer.id === 'roi-rivers-layer' || 
+                            layer.id === 'yolo-detections-outline';
+        
+        if (!isProtected) {
+          const isRoadRelated = layer.id.includes('road') || 
+                                layer.id.includes('highway') || 
+                                layer.id.includes('street') || 
+                                layer.id.includes('bridge') || 
+                                layer.id.includes('tunnel') || 
+                                layer.id.includes('rail') || 
+                                layer.id.includes('transit') || 
+                                layer.id.includes('route') || 
+                                layer.id.includes('motorway') ||
+                                layer.id.includes('way') ||
+                                layer.id.includes('path') ||
+                                layer.id.includes('link') ||
+                                layer.id.includes('ferry');
+
+          if (layer.type === 'fill' || layer.type === 'background' || layer.type === 'line' || isRoadRelated) {
+            map.current?.setLayoutProperty(layer.id, 'visibility', 'none');
+          }
         }
       });
 

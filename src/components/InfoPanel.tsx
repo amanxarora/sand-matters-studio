@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GeocodeData } from '../hooks/useGeocoding';
 import DataVisualizer from './DataVisualizer';
 import * as turf from '@turf/turf';
 import { useAuth } from '../context/AuthContext';
 import VisualSlider from './VisualSlider';
+import Link from 'next/link';
 
 const roboflowTargets = [
   {
@@ -34,6 +35,30 @@ const roboflowTargets = [
     description: "Detections of suction pump pontoons and heavy sand barges operating directly within active flowing riverbed channels.",
     image: "/images/roboflow/roboflow_4.jpg"
   }
+];
+
+const telemetrySteps = [
+  "STAGE 1: INGESTING USER-SPECIFIED REGION OF INTEREST (ROI) COORDINATES",
+  "STAGE 2: AUTHENTICATING EARTH ENGINE SECURED SERVICE ACCOUNT ACCESS",
+  "STAGE 2: RETRIEVING ESA dominant LANDCOVER MODES & CENTROID ARIDITY OFFSETS",
+  "STAGE 3: ISOLATING CLOUD-FREE PRE-MONSOON DRY-SEASON OBSERVATIONS",
+  "STAGE 3: VERIFYING IMAGE OBSERVATION DEPTHS (SENTINEL-2 CLEAR PIXELS >= 3)",
+  "STAGE 4: COMPUTING TEMPORAL DIFFERENTIAL SPECTRAL INDEX MAPS (FINAL - BASELINE)",
+  "STAGE 4: ANALYZING LOCAL delta-NDVI RIPARIAN CORRIDOR DECAY MATRICES",
+  "STAGE 4: DEPLOYING LOCAL delta-BSI BARE SOIL DISTURBANCE SCANNERS",
+  "STAGE 5: PROJECTING BUFFER EXCLUSIONS VIA WWF HYDROSHEDS 800M FLOODPLAINS",
+  "STAGE 5: MAPPING NDBI INFRASTRUCTURE & ESA AGRICULTURAL SEGMENT MASKS",
+  "STAGE 6: GENERATING LOCAL ADAPTIVE THRESHOLDS (MANNINGS n CORRECTION)",
+  "STAGE 6: SEPARATING VEGETATION STRIPPING AND OPEN PIT WATER EMERGENCE PIXELS",
+  "STAGE 7: ACQUIRING HIGH-RESOLUTION VISUAL RGB SATELLITE RASTER CROPS",
+  "STAGE 7: LOADING WEIGHTS & INITIALIZING PYTORCH YOLOv8s CPU PROCESSOR",
+  "STAGE 7: SCANNING LOCALIZED RIPARIAN REGIONS FOR ILLEGAL SAND EXTRACTION TARGETS",
+  "STAGE 7: LOCATING INSTREAM EXCAVATOR CLUSTERS AND HEAVY HAUL TRUCKS",
+  "STAGE 7: IDENTIFYING WATERBORNE SUCTION DREDGING VESSEL BARGES",
+  "STAGE 7: GEOTRANSFORMING YOLO PIXEL COORDINATES TO WGS84 WKT POLYGONS",
+  "STAGE 8: AGGREGATING CONFIDENCE COEFFICIENTS TO CALCULATE THE CONFIDENCE RISK SCORE",
+  "STAGE 9: WRITING REGION SCANS AND OBJECT GEOMETRIES TO SUPABASE DB",
+  "STAGE 10: GENERATING SYSTEM EVIDENTIARY DOSSIERS AND CIVIC ALERTS"
 ];
 
 interface InfoPanelProps {
@@ -73,6 +98,20 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
   const [sensitivity, setSensitivity] = useState<string>('medium');
   const [activeSpectralIndex, setActiveSpectralIndex] = useState<string>('ndvi');
   const [carouselIndex, setCarouselIndex] = useState<number>(0);
+  const [telemetryStep, setTelemetryStep] = useState<number>(0);
+
+  useEffect(() => {
+    let interval: any;
+    if (roiData?.loading) {
+      setTelemetryStep(0);
+      interval = setInterval(() => {
+        setTelemetryStep((prev) => (prev + 1) % telemetrySteps.length);
+      }, 1200);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [roiData?.loading]);
   
   const renderDefaultState = () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
@@ -81,28 +120,35 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
           Global Intelligence
         </h2>
         <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)', lineHeight: 1.5 }}>
-          Welcome to the From Afar intelligence dashboard. Use the polygon tool on the left to select a region of interest in India and run our Earth Engine + YOLO pipeline to detect illegal sand mining.
+          Welcome to the Sand Matters Studio intelligence dashboard. Use the polygon tool on the left to select a region of interest in India and run our Earth Engine + YOLO pipeline to detect illegal sand mining.
         </p>
       </div>
 
-      <div style={{ backgroundColor: 'var(--color-background)', padding: 'var(--spacing-4)', borderRadius: 'var(--border-radius-md)', border: '1px solid var(--glass-border)' }}>
-        <h3 style={{ fontSize: 'var(--font-size-base)', color: 'var(--color-text-primary)', marginBottom: 'var(--spacing-3)' }}>
-          Recent Global Activity
+      <div style={{ backgroundColor: 'var(--color-background)', padding: 'var(--spacing-4)', borderRadius: 'var(--border-radius-md)', border: '1px solid var(--glass-border)', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)' }}>
+        <h3 style={{ fontSize: 'var(--font-size-base)', color: 'var(--color-text-primary)', margin: 0 }}>
+          Report Sand Activity
         </h3>
-        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)' }}>
-          <li style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
-            <strong style={{ color: 'var(--color-accent)' }}>User 3942</strong> ran analysis in <span style={{ color: 'var(--color-text-primary)' }}>Chhattisgarh</span>
-            <div style={{ fontSize: '0.75rem', marginTop: '2px' }}>12 minutes ago</div>
-          </li>
-          <li style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
-            <strong style={{ color: 'var(--color-accent)' }}>User 1024</strong> ran analysis in <span style={{ color: 'var(--color-text-primary)' }}>Madhya Pradesh</span>
-            <div style={{ fontSize: '0.75rem', marginTop: '2px' }}>1 hour ago</div>
-          </li>
-          <li style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
-            <strong style={{ color: 'var(--color-danger)' }}>7 New Sites</strong> confirmed via field report in <span style={{ color: 'var(--color-text-primary)' }}>Gujarat</span>
-            <div style={{ fontSize: '0.75rem', marginTop: '2px' }}>5 hours ago</div>
-          </li>
-        </ul>
+        <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)', lineHeight: 1.5, margin: 0 }}>
+          Protecting riverine corridors requires immediate local coordination and crowdsourced ground-truth verification. Local observers, citizen scientists, and environmental wardens can submit specific decimal coordinate points of suspected mining activity, supplemented by geotagged mobile photography.
+        </p>
+        <Link href="/collaboration" style={{
+          display: 'inline-block',
+          width: 'fit-content',
+          textAlign: 'center',
+          backgroundColor: '#a35138',
+          color: '#fff',
+          textDecoration: 'none',
+          padding: '8px var(--spacing-4)',
+          borderRadius: 'var(--border-radius-sm)',
+          fontSize: 'var(--font-size-sm)',
+          fontWeight: 600,
+          transition: 'var(--transition-fast)'
+        }}
+        onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#8b402b'}
+        onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#a35138'}
+        >
+          Report Sand Activity
+        </Link>
       </div>
 
       <div style={{ backgroundColor: 'var(--color-background)', padding: 'var(--spacing-4)', borderRadius: 'var(--border-radius-md)', border: '1px solid var(--glass-border)' }}>
@@ -143,15 +189,21 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
           {/* Telemetry Loader */}
           <div style={{
             backgroundColor: 'var(--color-background)',
-            padding: 'var(--spacing-4)',
+            padding: 'var(--spacing-6) var(--spacing-4)',
             borderRadius: 'var(--border-radius-md)',
             border: '1px solid var(--glass-border)',
             fontFamily: 'monospace',
             fontSize: '11px',
             color: 'var(--color-success)',
-            lineHeight: '1.6',
+            lineHeight: '1.8',
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'stretch',
+            minHeight: '220px',
+            gap: 'var(--spacing-3)'
           }}>
             <style dangerouslySetInnerHTML={{__html: `
               @keyframes scan-loading {
@@ -159,22 +211,106 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                 50% { top: 100%; }
                 100% { top: 0%; }
               }
-              @keyframes pulse-loading {
-                0%, 100% { opacity: 0.6; }
-                50% { opacity: 1; }
+              @keyframes fade-in-up {
+                0% { opacity: 0; transform: translateY(10px); }
+                100% { opacity: 1; transform: translateY(0); }
+              }
+              @keyframes fade-out-up {
+                0% { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(-10px); }
+              }
+              @keyframes pulse-cyan {
+                0%, 100% { color: #06b6d4; opacity: 0.8; }
+                50% { color: #22d3ee; opacity: 1; }
               }
             `}} />
-            <div style={{ borderBottom: '1px solid var(--glass-border)', paddingBottom: 'var(--spacing-2)', marginBottom: 'var(--spacing-2)', fontWeight: 'bold' }}>
-              [GEOSPATIAL INGESTION TELEMETRY]
-            </div>
-            <div style={{ animation: 'pulse-loading 1.5s infinite' }}>&gt; INITIALIZING SPATIAL INGESTION PIPELINE...</div>
-            <div style={{ animation: 'pulse-loading 1.5s infinite', animationDelay: '0.2s' }}>&gt; CAPTURING POLYGON VECTOR BOUNDS...</div>
-            <div style={{ color: 'var(--color-warning)', animation: 'pulse-loading 1.5s infinite', animationDelay: '0.4s' }}>&gt; RESOLVING ADJACENT WATERWAY CHANNELS...</div>
-            <div style={{ color: 'var(--color-warning)', animation: 'pulse-loading 1.5s infinite', animationDelay: '0.6s' }}>&gt; PARSING CLOSEST HUMAN SETTLEMENTS...</div>
-            <div style={{ animation: 'pulse-loading 1.5s infinite', animationDelay: '0.8s' }}>&gt; DECODING NOMINATIM REVERSE GEO-REF...</div>
             
-            <div style={{ borderTop: '1px solid var(--glass-border)', paddingTop: 'var(--spacing-2)', marginTop: 'var(--spacing-2)', color: 'var(--color-accent)' }}>
-              STATUS: ACQUIRING TARGET REGION DATA...
+            <div style={{ fontSize: '10px', color: 'var(--color-text-secondary)', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 'bold', textAlign: 'center', borderBottom: '1px solid var(--glass-border)', paddingBottom: 'var(--spacing-2)' }}>
+              // BACKEND PIPELINE INGESTION TELEMETRY //
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-2)', flex: 1, justifyContent: 'center' }}>
+              {/* Previous Step (Fading out / Completed) */}
+              {telemetryStep > 0 && (
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--spacing-2)',
+                  color: '#10b981',
+                  opacity: 0.5,
+                  fontSize: '10px',
+                  animation: 'fade-out-up 1.2s forwards'
+                }}>
+                  <span style={{ fontWeight: 'bold' }}>[DONE]</span>
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {telemetrySteps[telemetryStep - 1]}
+                  </span>
+                </div>
+              )}
+
+              {/* Current Active Step (Pulsing / Processing) */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'var(--spacing-2)',
+                color: '#06b6d4',
+                fontSize: '11px',
+                fontWeight: 'bold',
+                animation: 'fade-in-up 0.3s ease-out'
+              }}>
+                <span style={{ 
+                  animation: 'pulse-cyan 1.5s infinite', 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '4px' 
+                }}>
+                  <span>⚡</span>
+                  <span>[RUNNING]</span>
+                </span>
+                <span style={{ animation: 'pulse-cyan 1.5s infinite' }}>
+                  {telemetrySteps[telemetryStep]}
+                </span>
+              </div>
+
+              {/* Next Step (Queued) */}
+              {telemetryStep < telemetrySteps.length - 1 && (
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--spacing-2)',
+                  color: '#f59e0b',
+                  opacity: 0.6,
+                  fontSize: '10px',
+                  animation: 'fade-in-up 0.5s ease-out'
+                }}>
+                  <span style={{ fontWeight: 'bold' }}>[NEXT]</span>
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {telemetrySteps[telemetryStep + 1]}
+                  </span>
+                </div>
+              )}
+
+              {/* Following Step (Pending) */}
+              {telemetryStep < telemetrySteps.length - 2 && (
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--spacing-2)',
+                  color: 'var(--color-text-secondary)',
+                  opacity: 0.35,
+                  fontSize: '9px'
+                }}>
+                  <span style={{ fontWeight: 'bold' }}>[WAIT]</span>
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {telemetrySteps[telemetryStep + 2]}
+                  </span>
+                </div>
+              )}
+            </div>
+            
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--glass-border)', paddingTop: 'var(--spacing-2)', fontSize: '9px', color: 'var(--color-text-secondary)' }}>
+              <span>PIPELINE TELEMETRY STATUS</span>
+              <span>{Math.round(((telemetryStep + 1) / telemetrySteps.length) * 100)}% COMPLETE</span>
             </div>
             
             {/* Cyber scanline overlay */}
@@ -184,8 +320,8 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
               left: 0,
               width: '100%',
               height: '2px',
-              backgroundColor: 'rgba(52, 211, 153, 0.4)',
-              boxShadow: '0 0 8px var(--color-success)',
+              backgroundColor: 'rgba(6, 182, 212, 0.25)',
+              boxShadow: '0 0 8px rgba(6, 182, 212, 0.5)',
               animation: 'scan-loading 2.5s infinite linear'
             }} />
           </div>
@@ -268,6 +404,21 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
           userSelect: !user ? 'none' : 'auto',
           transition: 'filter 0.3s ease'
         }}>
+          {/* Hydrology Data */}
+          <div style={{ backgroundColor: 'var(--color-background)', padding: 'var(--spacing-4)', borderRadius: 'var(--border-radius-md)', border: '1px solid var(--glass-border)', borderLeft: '4px solid var(--color-accent)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-3)' }}>
+              <span style={{ fontSize: '28px', fontWeight: 'bold', color: 'var(--color-accent)' }}>{numRivers}</span>
+              <span style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Rivers Detected</span>
+            </div>
+            {numRivers > 0 && (
+              <div style={{ marginTop: 'var(--spacing-3)', color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)', maxHeight: '100px', overflowY: 'auto' }}>
+                {rivers.features.map((r: any, idx: number) => (
+                  <div key={idx} style={{ padding: '2px 0' }}>🌊 {r.properties.name || 'Unnamed River'}</div>
+                ))}
+              </div>
+            )}
+          </div>
+
           {/* Location Details */}
           <div style={{ backgroundColor: 'var(--color-background)', padding: 'var(--spacing-4)', borderRadius: 'var(--border-radius-md)', border: '1px solid var(--glass-border)' }}>
             <h3 style={{ fontSize: 'var(--font-size-sm)', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--color-text-secondary)', marginBottom: 'var(--spacing-3)' }}>
@@ -279,33 +430,6 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
               <li><strong style={{ color: 'var(--color-text-secondary)' }}>City/Town:</strong> {geocode?.city || 'N/A'}</li>
               <li><strong style={{ color: 'var(--color-text-secondary)' }}>Soil Type:</strong> Alluvial (Simulated)</li>
             </ul>
-          </div>
-
-          {/* Analyst Profile Card */}
-          <div style={{ 
-            backgroundColor: 'var(--color-background)', 
-            padding: 'var(--spacing-4)', 
-            borderRadius: 'var(--border-radius-md)', 
-            border: '1px solid var(--glass-border)',
-            borderLeft: '4px solid var(--color-success)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 'var(--spacing-2)'
-          }}>
-            <h3 style={{ fontSize: 'var(--font-size-sm)', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--color-text-secondary)', marginBottom: 'var(--spacing-1)' }}>
-              Analyst Profile Card
-            </h3>
-            <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-primary)' }}>
-              <strong>Ingested by:</strong> {properties.analyst_profession || 'Independent Analyst'}
-            </div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-secondary)', fontFamily: 'monospace' }}>
-              LOCATION: {properties.analyst_city || 'New Delhi'}, {properties.analyst_country || 'India'}
-            </div>
-            {properties.analyst_intention && (
-              <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-secondary)', fontStyle: 'italic', marginTop: 'var(--spacing-1)' }}>
-                "{properties.analyst_intention}"
-              </div>
-            )}
           </div>
 
           {/* Regional Terrain Metrics */}
@@ -357,21 +481,6 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
             ) : (
               <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-secondary)', fontStyle: 'italic' }}>
                 No nearby settlements detected within 20km.
-              </div>
-            )}
-          </div>
-
-          {/* Hydrology Data */}
-          <div style={{ backgroundColor: 'var(--color-background)', padding: 'var(--spacing-4)', borderRadius: 'var(--border-radius-md)', border: '1px solid var(--glass-border)', borderLeft: '4px solid var(--color-accent)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-3)' }}>
-              <span style={{ fontSize: '28px', fontWeight: 'bold', color: 'var(--color-accent)' }}>{numRivers}</span>
-              <span style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Rivers Detected</span>
-            </div>
-            {numRivers > 0 && (
-              <div style={{ marginTop: 'var(--spacing-3)', color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)', maxHeight: '100px', overflowY: 'auto' }}>
-                {rivers.features.map((r: any, idx: number) => (
-                  <div key={idx} style={{ padding: '2px 0' }}>🌊 {r.properties.name || 'Unnamed River'}</div>
-                ))}
               </div>
             )}
           </div>
