@@ -3,6 +3,11 @@ import styles from './SiteDetailPanel.module.css'; // Reuse same styles for cons
 import { GeocodeData } from '../hooks/useGeocoding';
 import { useSites } from '../hooks/useSites';
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 
+  (typeof window !== 'undefined' && window.location.hostname === 'localhost' 
+    ? 'http://localhost:8000' 
+    : 'https://amanxar-sand-matters-backend.hf.space');
+
 interface RegionDetailPanelProps {
   roiData: {
     geocode: GeocodeData | null;
@@ -27,7 +32,7 @@ const RegionDetailPanel: React.FC<RegionDetailPanelProps> = ({ roiData, onClose 
     
     try {
       // Trigger the backend E2E Pipeline
-      await fetch('http://localhost:8000/api/pipeline/analyze', {
+      await fetch(`${BACKEND_URL}/api/pipeline/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bbox })
