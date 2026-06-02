@@ -15,100 +15,105 @@ export default function TermsPage() {
           
           {/* Hero Section */}
           <div className={styles.hero}>
-            <div className={styles.heroTagline}>OPERATIONAL DISCLOSURE: LEGAL FRAMEWORK</div>
-            <h1 className={styles.heroTitle}>Terms of Service &amp; Computational Disclaimers</h1>
+            <div className={styles.heroTagline}>LEGAL &amp; COMPUTATIONAL FRAMEWORK</div>
+            <h1 className={styles.heroTitle}>Sand Matters Studio</h1>
             <p className={styles.heroSubtitle}>
-              Establishing the operational parameters, geospatial metadata standards, and probabilistic limits of open-source environmental monitoring.
+              Geospatial Platform for Sand Mining Oversight &amp; Environmental Hydrology
             </p>
-          </div>
-
-          {/* Section 1: Introduction */}
-          <div className={styles.section}>
-            <div className={styles.sectionHeader}>SECTION 01 // OVERVIEW</div>
-            <h2 className={styles.sectionTitle}>1. Platform Mission &amp; Scope of Use</h2>
-            <p className={styles.sectionText}>
-              Sand Matters Studio operates as a decentralized, open-source environmental telemetry node and collaborative research platform. By accessing the systems, dashboards, and spatial data layers hosted herein, you establish a connection to an active environmental monitoring network. This service is dedicated strictly to conservation research, civic environmental advocacy, journalistic investigation, and regulatory audit facilitation. Any exploitation of the platform's processed telemetry for commercial mineral sourcing, aggregate speculative trading, or extractive logistics optimization is strictly prohibited and constitutes a breach of these terms.
-            </p>
-          </div>
-
-          {/* Section 2: Computational Disclaimers & Probabilistic Data Limitations */}
-          <div className={styles.section}>
-            <div className={styles.sectionHeader}>SECTION 02 // SPECTRAL &amp; ALGORITHMIC DISCLOSURES</div>
-            <h2 className={styles.sectionTitle}>2. Computational Disclaimers &amp; Probabilistic Data Limitations</h2>
-            <p className={styles.sectionText}>
-              All spectral visualizations, statistical charts, and automated detections provided by Sand Matters Studio are generated via computational analysis of publicly available satellite imagery and machine learning models. You explicitly acknowledge and agree to the following scientific and mathematical limitations:
-            </p>
-            <ul className={styles.list}>
-              <li className={styles.listItem}>
-                <span className={styles.boldText}>Probabilistic Indicators:</span> All algorithm outputs represent statistical approximations, spatial probabilities, and reflectance anomalies. They do not constitute definitive legal proof of illegal mining activity.
-              </li>
-              <li className={styles.listItem}>
-                <span className={styles.boldText}>Spectral Index Approximations:</span> Indices such as the Bare Soil Index (BSI), Normalized Difference Vegetation Index (NDVI), and Modified Normalized Difference Water Index (MNDWI) are calculated from raw satellite bands (Sentinel-2 L2A and Landsat 8-9 OLI). These indices are subject to atmospheric interference, cloud cover masking, seasonal hydrological fluctuations, and agricultural crop cycles which can trigger false positives.
-              </li>
-              <li className={styles.listItem}>
-                <span className={styles.boldText}>YOLOv8 Neural Network Limitations:</span> Our object detection engine is trained on specific visual anchors representing excavators, dredging barges, and sand stockpiles. A classification match (e.g., &quot;88% Excavator Match&quot;) is a statistical visual confidence score and does not guarantee the active presence, legal status, or unauthorized nature of the machinery.
-              </li>
-            </ul>
-            <div className={styles.consoleLog}>
-              <div className={styles.consoleHeader}>TELEMETRY_VALIDATION_THRESHOLD_LOCK</div>
-              &gt; SENSOR SOURCE : Sentinel-2 MSI // Landsat 8-9 OLI<br />
-              &gt; RESOLUTION    : 10-meter (Sentinel-2 Bands B2, B3, B4, B8) // 20-meter (B11 SWIR)<br />
-              &gt; YOLOv8 LIMITS : Intersection-over-Union (IoU) Threshold = 0.45 // NMS Validation = 0.50<br />
-              &gt; ORBITAL CYCLE : 5-Day (Sentinel-2 Constellation) // 8-to-16-Day (Landsat OLI)<br />
-              &gt; INFERENCE CODE : STATISTICAL APPROXIMATION ONLY // DO NOT LEVERAGE WITHOUT FIELD VALIDATION
+            <div style={{ display: 'inline-block', marginTop: 'var(--spacing-3)', padding: 'var(--spacing-1) var(--spacing-3)', border: '1px solid var(--color-success)', color: 'var(--color-success)', fontSize: '0.75rem', fontFamily: 'monospace', fontWeight: 'bold' }}>
+              &gt; DATA STREAM ONLINE
             </div>
           </div>
 
-          {/* Section 3: Geospatial & Spatial Metadata Standards */}
+          {/* Section 0: Overview */}
           <div className={styles.section}>
-            <div className={styles.sectionHeader}>SECTION 03 // GEOSPATIAL PARAMETERS</div>
-            <h2 className={styles.sectionTitle}>3. Spatial Metadata &amp; Geolocation Standards</h2>
             <p className={styles.sectionText}>
-              To maintain the integrity of our collaborative database, all coordinates submitted to or derived from the Sand Matters Studio interface must comply with standardized spatial guidelines:
+              Welcome to **Sand Matters Studio**, a professional-grade remote sensing and geospatial intelligence platform. This interface tracks and catalogues suspected sand mining extraction and environmental degradation across sensitive riverine and coastal zones.
             </p>
+            <p className={styles.sectionText}>
+              By integrating multi-spectral satellite imagery (Sentinel-2 and Landsat) with machine learning pipelines (YOLO object detection) and biophysical spectral indices (NDVI, BSI, MNDWI), Sand Matters Studio processes surface reflectance data into objective, verifiable spatial data. The platform empowers conservationists, researchers, and regulatory agencies with high-fidelity telemetry to monitor fragile morphology, document canopy loss, and support ecological conservation.
+            </p>
+          </div>
+
+          {/* Section 1: Terms of Service & Data Rights */}
+          <div className={styles.section}>
+            <div className={styles.sectionHeader}>SECTION 01: TERMS &amp; DATA RIGHTS</div>
+            <h2 className={styles.sectionTitle}>1. Terms of Service &amp; Data Rights</h2>
+            
             <ul className={styles.list}>
               <li className={styles.listItem}>
-                <span className={styles.boldText}>Coordinate Reference System (CRS):</span> All spatial coordinates must be referenced to the World Geodetic System 1984 (<span className={styles.boldText}>WGS 84 / EPSG:4326</span>) ellipsoid. Decimal degrees are calculated to six decimal places, restricting spatial tolerance to approximately &plusmn;0.11 meters at the equator.
+                <span className={styles.boldText}>1.1 Conservation &amp; Research Mandate:</span> The geospatial data, spatial indices, and machine learning inferences compiled on this platform are provided strictly for conservation advocacy, scientific research, and regulatory monitoring. Commercial exploitation of telemetry data or spatial assets is prohibited.
               </li>
               <li className={styles.listItem}>
-                <span className={styles.boldText}>Positional Uncertainty Margins:</span> Observers submitting ground-truth logs acknowledge that handheld consumer GNSS/GPS receivers possess horizontal accuracy limitations ranging from &plusmn;3 to &plusmn;15 meters depending on vegetative canopy blocking and atmospheric disturbance. Submissions must disclose the estimated positional error where possible.
+                <span className={styles.boldText}>1.2 Contributed Coordinates &amp; Public Mapping:</span> When you submit reports, coordinates, or ground-truth photo evidence to Sand Matters Studio, you retain intellectual property rights to your contributions. By submitting, you grant this project a perpetual, worldwide, royalty-free, non-exclusive license to aggregate, analyze, and display these datasets to map global extraction hotspots.
               </li>
               <li className={styles.listItem}>
-                <span className={styles.boldText}>Imagery Offsets:</span> Satellite raster grids mapped via MapLibre GL overlays may experience subtle orthorectification offsets (up to 12 meters) relative to real-world ground features. All measurements of riverbank erosion lines, stockpiles, and access channels are spatial estimations.
+                <span className={styles.boldText}>1.3 Intellectual Property &amp; Scraping Policy:</span> The computational workflows, custom spectral layers, and trained computer vision model weights are the exclusive property of the Sand Matters Studio project. Systematic, automated scraping or extraction of platform coordinate databases without written permission violates these terms.
+              </li>
+              <li className={styles.listItem}>
+                <span className={styles.boldText}>1.4 Regulatory &amp; Legal Precaution:</span> Satellite observation is a probabilistic discipline. All spectral indices, machine learning predictions, and alert metrics represent mathematical estimations of ground conditions rather than definitive legal facts. Users are advised to perform independent, on-the-ground validation before initiating formal regulatory or administrative proceedings.
               </li>
             </ul>
           </div>
 
-          {/* Section 4: Data Ownership, Open-Source Licensing, & Evidentiary Use */}
+          {/* Section 2: Local Storage & Session Data Policy */}
           <div className={styles.section}>
-            <div className={styles.sectionHeader}>SECTION 04 // DATA RIGHTS &amp; USE</div>
-            <h2 className={styles.sectionTitle}>4. Data Ownership, Open-Source Licensing, &amp; Evidentiary Use</h2>
+            <div className={styles.sectionHeader}>SECTION 02: LOCAL STORAGE &amp; COOKIES</div>
+            <h2 className={styles.sectionTitle}>2. Local Storage &amp; Session Data Policy</h2>
             <p className={styles.sectionText}>
-              Sand Matters Studio advocates for transparent environmental governance. The platform is structured around reciprocal, open-source principles:
+              To deliver a highly responsive and secure user interface, Sand Matters Studio stores essential telemetry states directly within your browser's local storage (localStorage) and cookies:
             </p>
             <ul className={styles.list}>
               <li className={styles.listItem}>
-                <span className={styles.boldText}>Civic Submissions:</span> When you upload specific coordinate markers, comment descriptions, or geotagged photographs, you retain your original copyright. However, by uploading, you grant Sand Matters Studio an irrevocable, perpetual, worldwide, non-exclusive, royalty-free, sub-licensable license to publish, map, translate, and synthesize these inputs into public environmental databases.
+                <span className={styles.boldText}>Active Session Preservation:</span> If you register or authenticate, secure, encrypted tokens are written to maintain your session.
               </li>
               <li className={styles.listItem}>
-                <span className={styles.boldText}>Platform Materials:</span> The custom YOLOv8 model weights, consolidated geospatial databases, and processed spectral layers are licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)** license. Commercial usage of this synthesized data is strictly prohibited without written consent.
+                <span className={styles.boldText}>Consent Persistence:</span> Your compliance and onboarding acknowledgements are stored locally to prevent redundant onboarding prompts.
               </li>
               <li className={styles.listItem}>
-                <span className={styles.boldText}>Legal &amp; Evidentiary Packets:</span> Synthesized spatial packages compiled using our historical GEE reflectance tools are intended to serve as preliminary research dossiers. While they provide auditable timelines, they must be combined with physical ground-truth validation, certified legal affidavits, and formal environmental impact assessments before being presented in a court of law.
+                <span className={styles.boldText}>Interface Preferences:</span> We cache active region filters, custom map coordinates of interest, and viewport boundaries to optimize queries and reduce server latency.
               </li>
             </ul>
           </div>
 
-          {/* Section 5: Indemnification & Safe Harbor for Civic Defenders */}
+          {/* Section 3: Scientific & Technical Limitations */}
+          <div className={styles.section}>
+            <div className={styles.sectionHeader}>SECTION 03: SCIENTIFIC INDICATORS</div>
+            <h2 className={styles.sectionTitle}>3. Scientific &amp; Technical Limitations</h2>
+            
+            <div className={styles.consoleLog}>
+              <div className={styles.consoleHeader}>ATTENTION NODE OPERATORS:</div>
+              &gt; NDVI  : Measures chlorophyll density. Decreases suggest canopy clearance preceding active sand excavation.<br />
+              &gt; BSI   : Highlights mineral and soil exposure. Sharp increases signal active excavation pits or stripped topsoil.<br />
+              &gt; MNDWI : Delineates open water boundaries. Shifts reveal channel alterations from riverbed dredging.
+            </div>
+          </div>
+
+          {/* Section 4: Platform Limitations */}
           <div className={styles.section} style={{ borderTop: '1px solid var(--glass-border)', paddingTop: 'var(--spacing-6)' }}>
-            <div className={styles.sectionHeader} style={{ color: 'var(--color-accent)' }}>SECTION 05 // LIABILITY LIMITATION &amp; SAFE HARBOR</div>
-            <h2 className={styles.sectionTitle}>5. Indemnification &amp; Safe Harbor for Civic Defenders</h2>
-            <p className={styles.sectionText}>
-              In no event shall Sand Matters Studio, its developers, academic partners (including the Institute for Advanced Architecture of Catalonia - IAAC), or allied non-governmental organizations (NGOs) be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, loss of use, data, or profits; regulatory fines; or civil litigation costs) however caused and on any theory of liability, whether in contract, strict liability, or tort arising in any way out of the use of this telemetry.
-            </p>
-            <p className={styles.sectionText}>
-              The coordinates logged by platform users represent information collected in the interest of public environmental preservation. Contributors are protected under prevailing civic participation and whistleblower provisions in their respective jurisdictions. However, contributors are solely responsible for ensuring that physical ground validation checks do not breach local trespass laws or compromise personal physical safety.
-            </p>
+            <div className={styles.sectionHeader} style={{ color: 'var(--color-accent)' }}>SECTION 04: PLATFORM LIMITATIONS &amp; EXTRAPOLATIONS</div>
+            <h2 className={styles.sectionTitle}>4. Probabilistic Thresholds &amp; Platform Limitations</h2>
+            
+            <ul className={styles.list}>
+              <li className={styles.listItem}>
+                <span className={styles.boldText}>Spatial resolution ceiling:</span> Detection is constrained by Sentinel-2's 10-metre pixel floor. Sub-metric features — including individual vessels, portable equipment, and small-scale artisanal extraction infrastructure — fall below the threshold of spectral resolvability and cannot be reliably detected or classified.
+              </li>
+              <li className={styles.listItem}>
+                <span className={styles.boldText}>Spectral indices are non-specific indicators:</span> NDVI decline, BSI elevation, and MNDWI shift are proxies for surface disturbance, not exclusive signatures of sand extraction. Agricultural tillage, drought-induced vegetation stress, natural channel migration, and construction activity produce spectrally equivalent responses and constitute a persistent source of false positive detection.
+              </li>
+              <li className={styles.listItem}>
+                <span className={styles.boldText}>Monsoon-period observational gaps:</span> Dry-season compositing suppresses cloud contamination but compresses the analytical window to approximately four to five months per year in high-precipitation catchments. Extraction events initiated and concluded within a single inter-composite interval are not captured; seasonal and short-duration operations are systematically under-represented in platform outputs.
+              </li>
+              <li className={styles.listItem}>
+                <span className={styles.boldText}>Object detection trained on a geographically constrained corpus:</span> The YOLOv8 classification model was calibrated on imagery from the Krishna and Dwarakeshwar pilot catchments. Precision and recall rates for all four object classes — barges, sorting sieves, stockpiles, and heavy machinery — are empirically uncharacterised outside these two systems. Outputs in unrepresented ecoregions should be treated as model extrapolations with unquantified uncertainty bounds.
+              </li>
+              <li className={styles.listItem}>
+                <span className={styles.boldText}>Parametric generalisation beyond pilot geography is unvalidated:</span> Spectral thresholds and sensitivity coefficients were developed within the specific substrate, hydrological, and land cover conditions of the pilot sites. Application of these parameters to queries across the full extent of Indian river basins — spanning tropical humid, semi-arid, arid, and montane regimes — constitutes uncalibrated extrapolation without ecoregion-specific back-testing.
+              </li>
+              <li className={styles.listItem}>
+                <span className={styles.boldText}>Absence of independent ground-truth verification:</span> No purpose-collected field validation — GPS-bounded surveys, UAV orthomosaic mapping, or systematic site photography — has been conducted against platform outputs. Accuracy characterisation derived from cross-referencing with documentation that itself incorporates satellite evidence does not constitute fully independent verification. All outputs should be understood as computational indicators warranting field corroboration, not as independently verified records of extraction activity.
+              </li>
+            </ul>
           </div>
 
         </div>

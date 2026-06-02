@@ -86,7 +86,7 @@ export default function WelcomeModal({ onAccept }: WelcomeModalProps) {
               letterSpacing: '0.5px',
               fontFamily: 'var(--font-family-base)'
             }}>
-              From Afar
+              Sand Matters Studio
             </div>
             <div style={{
               color: 'var(--color-text-secondary)',
@@ -138,10 +138,10 @@ export default function WelcomeModal({ onAccept }: WelcomeModalProps) {
             backgroundColor: 'var(--color-accent-soft)'
           }}>
             <p style={{ marginBottom: 'var(--spacing-3)', fontWeight: 500 }}>
-              Welcome to From Afar, a professional-grade remote sensing and geospatial intelligence platform. This interface tracks and catalogues suspected sand mining extraction and environmental degradation across sensitive riverine and coastal zones.
+              Welcome to Sand Matters Studio, a professional-grade remote sensing and geospatial intelligence platform. This interface tracks and catalogues suspected sand mining extraction and environmental degradation across sensitive riverine and coastal zones.
             </p>
             <p style={{ color: 'var(--color-text-secondary)' }}>
-              By integrating multi-spectral satellite imagery (Sentinel-2 and Landsat) with machine learning pipelines (YOLO object detection) and biophysical spectral indices (NDVI, BSI, MNDWI), From Afar processes surface reflectance data into objective, verifiable spatial data. The platform empowers conservationists, researchers, and regulatory agencies with high-fidelity telemetry to monitor fragile morphology, document canopy loss, and support ecological conservation.
+              By integrating multi-spectral satellite imagery (Sentinel-2 and Landsat) with machine learning pipelines (YOLO object detection) and biophysical spectral indices (NDVI, BSI, MNDWI), Sand Matters Studio processes surface reflectance data into objective, verifiable spatial data. The platform empowers conservationists, researchers, and regulatory agencies with high-fidelity telemetry to monitor fragile morphology, document canopy loss, and support ecological conservation.
             </p>
           </div>
 
@@ -180,11 +180,11 @@ export default function WelcomeModal({ onAccept }: WelcomeModalProps) {
               </div>
               <div>
                 <strong style={{ color: 'var(--color-text-primary)' }}>1.2 Contributed Coordinates & Public Mapping</strong>
-                <p style={{ marginTop: '2px' }}>When you submit reports, coordinates, or ground-truth photo evidence to From Afar, you retain intellectual property rights to your contributions. By submitting, you grant this project a perpetual, worldwide, royalty-free, non-exclusive license to aggregate, analyze, and display these datasets to map global extraction hotspots.</p>
+                <p style={{ marginTop: '2px' }}>When you submit reports, coordinates, or ground-truth photo evidence to Sand Matters Studio, you retain intellectual property rights to your contributions. By submitting, you grant this project a perpetual, worldwide, royalty-free, non-exclusive license to aggregate, analyze, and display these datasets to map global extraction hotspots.</p>
               </div>
               <div>
                 <strong style={{ color: 'var(--color-text-primary)' }}>1.3 Intellectual Property & Scraping Policy</strong>
-                <p style={{ marginTop: '2px' }}>The computational workflows, custom spectral layers, and trained computer vision model weights are the exclusive property of the From Afar project. Systematic, automated scraping or extraction of platform coordinate databases without written permission violates these terms.</p>
+                <p style={{ marginTop: '2px' }}>The computational workflows, custom spectral layers, and trained computer vision model weights are the exclusive property of the Sand Matters Studio project. Systematic, automated scraping or extraction of platform coordinate databases without written permission violates these terms.</p>
               </div>
               <div>
                 <strong style={{ color: 'var(--color-text-primary)' }}>1.4 Regulatory & Legal Precaution</strong>
@@ -223,7 +223,7 @@ export default function WelcomeModal({ onAccept }: WelcomeModalProps) {
                 flexDirection: 'column',
                 gap: '8px'
               }}>
-                <p>To deliver a highly responsive and secure user interface, From Afar stores essential telemetry states directly within your browser's local storage (<code>localStorage</code>) and cookies:</p>
+                <p>To deliver a highly responsive and secure user interface, Sand Matters Studio stores essential telemetry states directly within your browser's local storage (<code>localStorage</code>) and cookies:</p>
                 <ul style={{ paddingLeft: 'var(--spacing-4)', display: 'flex', flexDirection: 'column', gap: '4px', margin: 0 }}>
                   <li><strong>Active Session Preservation:</strong> If you register or authenticate, secure, encrypted tokens are written to maintain your session.</li>
                   <li><strong>Consent Persistence:</strong> Your compliance and onboarding acknowledgements are stored locally to prevent redundant onboarding prompts.</li>
@@ -266,7 +266,6 @@ export default function WelcomeModal({ onAccept }: WelcomeModalProps) {
                   <li><strong>NDVI:</strong> Measures chlorophyll density. Decreases suggest canopy clearance preceding active sand excavation.</li>
                   <li><strong>BSI:</strong> Highlights mineral and soil exposure. Sharp increases signal active excavation pits or stripped topsoil.</li>
                   <li><strong>MNDWI:</strong> Delineates open water boundaries. Shifts reveal channel alterations from riverbed dredging.</li>
-                  <li><strong>YOLO PREDICTION:</strong> High confidence rating denotes statistical visual resemblance, not definitive legal proof of illegal activity.</li>
                 </ul>
               </div>
             </div>
@@ -308,7 +307,7 @@ export default function WelcomeModal({ onAccept }: WelcomeModalProps) {
                   cursor: 'pointer'
                 }}
               />
-              <span>I agree to the <strong>Terms of Service & Data Rights</strong> (Section 1.2)</span>
+              <span>I agree to the <strong>Terms of Service & Data Rights</strong> (Section 1)</span>
             </label>
 
             <label style={{
@@ -331,7 +330,7 @@ export default function WelcomeModal({ onAccept }: WelcomeModalProps) {
                   cursor: 'pointer'
                 }}
               />
-              <span>I consent to the <strong>Session Storage Protocol</strong> (Section 1.3)</span>
+              <span>I consent to the <strong>Session Storage Protocol</strong> (Section 2)</span>
             </label>
 
             <label style={{
@@ -354,7 +353,7 @@ export default function WelcomeModal({ onAccept }: WelcomeModalProps) {
                   cursor: 'pointer'
                 }}
               />
-              <span>I acknowledge the <strong>Technical & Spectral Limitations</strong> (Section 1.4)</span>
+              <span>I acknowledge the <strong>Technical & Spectral Limitations</strong> (Section 3)</span>
             </label>
           </div>
 
@@ -392,7 +391,7 @@ export default function WelcomeModal({ onAccept }: WelcomeModalProps) {
                 }
               }}
             >
-              [ INITIALIZE SECURE FEED ]
+              INITIALIZE SECURE FEED
             </button>
           </div>
         </div>
