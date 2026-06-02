@@ -9,11 +9,22 @@ const Navbar = () => {
   const { user, loading, signInWithGoogle, signOut, loginManually } = useAuth();
   const pathname = usePathname();
 
-  // Modal State Parameters
+  // Modal & Dropdown State Parameters
   const [showModal, setShowModal] = useState(false);
-  const [username, setUsername] = useState('');
+  const [showDropdown, setShowDropdown] = useState(false);
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  
+  // Registration Form States
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [userRole, setUserRole] = useState('Enthusiast');
+  const [intent, setIntent] = useState('Education');
+  const [fromIndia, setFromIndia] = useState(false);
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [referral, setReferral] = useState('Search Engine');
+  const [agreedTerms, setAgreedTerms] = useState(false);
+  const [receiveUpdates, setReceiveUpdates] = useState(false);
 
   return (
     <nav style={{
@@ -135,37 +146,143 @@ const Navbar = () => {
           <div style={{ width: '100px', height: '36px', borderRadius: 'var(--border-radius-sm)', backgroundColor: 'var(--glass-bg)' }} />
         ) : user ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-3)' }}>
-            {/* Clickable Profile Navigation */}
-            <Link href="/profile" style={{ 
-              fontSize: 'var(--font-size-sm)', 
-              color: 'var(--color-text-primary)', 
-              fontWeight: 600,
-              textDecoration: 'none',
-              borderBottom: pathname === '/profile' ? '2px solid var(--color-accent)' : '2px solid transparent',
-              paddingBottom: '2px',
-              transition: 'var(--transition-fast)'
-            }}
-            onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent)'}
-            onMouseOut={(e) => e.currentTarget.style.color = pathname === '/profile' ? 'var(--color-accent)' : 'var(--color-text-primary)'}
-            >
-              {user.user_metadata?.full_name || user.email}
-            </Link>
-            <button style={{
-              backgroundColor: 'transparent',
-              color: 'var(--color-text-secondary)',
-              border: '1px solid var(--glass-border)',
-              padding: 'var(--spacing-2) var(--spacing-4)',
-              borderRadius: 'var(--border-radius-sm)',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'var(--transition-fast)'
-            }}
-            onClick={signOut}
-            onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-text-primary)'}
-            onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
-            >
-              Sign Out
-            </button>
+            {/* Clickable Profile Navigation Dropdown */}
+            <div style={{ position: 'relative' }}>
+              <button 
+                onClick={() => setShowDropdown(!showDropdown)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: 'var(--font-size-sm)', 
+                  color: showDropdown || pathname.startsWith('/profile') || pathname === '/settings' ? 'var(--color-accent)' : 'var(--color-text-primary)', 
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  borderBottom: pathname.startsWith('/profile') || pathname === '/settings' ? '2px solid var(--color-accent)' : '2px solid transparent',
+                  paddingBottom: '2px',
+                  transition: 'var(--transition-fast)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+              >
+                {user.user_metadata?.full_name || user.email}
+                <span style={{ fontSize: '10px' }}>{showDropdown ? '▲' : '▼'}</span>
+              </button>
+
+              {showDropdown && (
+                <div style={{
+                  position: 'absolute',
+                  top: 'calc(100% + 8px)',
+                  right: 0,
+                  backgroundColor: 'var(--color-surface)',
+                  border: '1px solid var(--glass-border)',
+                  borderRadius: '0px',
+                  padding: 'var(--spacing-2) 0',
+                  minWidth: '180px',
+                  zIndex: 100,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+                }}>
+                  <Link 
+                    href="/profile" 
+                    onClick={() => setShowDropdown(false)}
+                    style={{
+                      padding: '8px 16px',
+                      fontSize: '13px',
+                      color: 'var(--color-text-primary)',
+                      textDecoration: 'none',
+                      fontWeight: 500,
+                      transition: 'var(--transition-fast)',
+                      textAlign: 'left'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--color-surface-hover)';
+                      e.currentTarget.style.color = 'var(--color-accent)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = 'var(--color-text-primary)';
+                    }}
+                  >
+                    1. Profile
+                  </Link>
+                  <Link 
+                    href="/settings" 
+                    onClick={() => setShowDropdown(false)}
+                    style={{
+                      padding: '8px 16px',
+                      fontSize: '13px',
+                      color: 'var(--color-text-primary)',
+                      textDecoration: 'none',
+                      fontWeight: 500,
+                      transition: 'var(--transition-fast)',
+                      textAlign: 'left'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--color-surface-hover)';
+                      e.currentTarget.style.color = 'var(--color-accent)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = 'var(--color-text-primary)';
+                    }}
+                  >
+                    2. Settings
+                  </Link>
+                  <Link 
+                    href="/collaboration" 
+                    onClick={() => setShowDropdown(false)}
+                    style={{
+                      padding: '8px 16px',
+                      fontSize: '13px',
+                      color: 'var(--color-text-primary)',
+                      textDecoration: 'none',
+                      fontWeight: 500,
+                      transition: 'var(--transition-fast)',
+                      textAlign: 'left'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--color-surface-hover)';
+                      e.currentTarget.style.color = 'var(--color-accent)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = 'var(--color-text-primary)';
+                    }}
+                  >
+                    3. Report Sand Activity
+                  </Link>
+                  <hr style={{ border: 'none', borderTop: '1px solid var(--glass-border)', margin: '4px 0' }} />
+                  <button
+                    onClick={() => {
+                      setShowDropdown(false);
+                      signOut();
+                    }}
+                    style={{
+                      padding: '8px 16px',
+                      fontSize: '13px',
+                      color: 'var(--color-danger)',
+                      background: 'none',
+                      border: 'none',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'var(--transition-fast)',
+                      textAlign: 'left',
+                      width: '100%'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--color-surface-hover)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-3)' }}>
@@ -232,10 +349,15 @@ const Navbar = () => {
             background: 'var(--color-surface)',
             border: '1px solid var(--glass-border)',
             borderRadius: '0px',
-            width: '420px',
+            width: '480px',
+            maxHeight: '90vh',
+            overflowY: 'auto',
             padding: 'var(--spacing-6)',
             position: 'relative',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.8)'
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'var(--spacing-4)'
           }}>
             {/* Close Button */}
             <button 
@@ -248,7 +370,8 @@ const Navbar = () => {
                 color: 'var(--color-text-secondary)',
                 fontSize: '1.5rem',
                 cursor: 'pointer',
-                lineHeight: 1
+                lineHeight: 1,
+                zIndex: 100
               }}
               onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-text-primary)'}
               onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
@@ -257,48 +380,97 @@ const Navbar = () => {
             </button>
 
             {/* Modal Headers */}
-            <div style={{ marginBottom: 'var(--spacing-5)' }}>
+            <div>
               <div style={{ fontSize: '11px', fontFamily: 'monospace', color: 'var(--color-accent)', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '6px' }}>
-                Operational Node Access
+                Operational Node Registration
               </div>
               <h2 style={{ fontSize: '1.5rem', margin: 0, fontWeight: 700, color: 'var(--color-text-primary)' }}>
-                Sign In to Studio
+                Register Operator Node
               </h2>
             </div>
 
             {/* Custom Manual Form */}
             <form onSubmit={(e) => {
               e.preventDefault();
-              loginManually(username, email);
+              if (!agreedTerms) {
+                alert("Please agree to the terms and conditions.");
+                return;
+              }
+              const profileData = {
+                firstName,
+                lastName,
+                role: userRole,
+                intent,
+                fromIndia,
+                city,
+                state,
+                referral,
+                agreedTerms,
+                receiveUpdates,
+                email
+              };
+              localStorage.setItem('sms_pending_profile_data', JSON.stringify(profileData));
+              loginManually(`${firstName} ${lastName}`, email);
               setShowModal(false);
-              setUsername('');
+              // Reset manual inputs
+              setFirstName('');
+              setLastName('');
               setEmail('');
-              setPassword('');
+              setCity('');
+              setState('');
+              setAgreedTerms(false);
+              setReceiveUpdates(false);
             }} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <label style={{ fontSize: '10px', color: 'var(--color-accent)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Operator Identifier (Username) *
-                </label>
-                <input 
-                  type="text" 
-                  required 
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  placeholder="e.g. Field Officer Delta"
-                  style={{
-                    background: '#faf8f5',
-                    color: 'var(--color-abyssal-blue)',
-                    border: '1px solid var(--glass-border)',
-                    borderRadius: '0px',
-                    padding: '10px 12px',
-                    fontSize: '13px',
-                    outline: 'none',
-                    fontFamily: 'inherit'
-                  }}
-                />
+              {/* Row: First Name & Last Name */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--spacing-3)' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <label style={{ fontSize: '10px', color: 'var(--color-accent)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    First Name *
+                  </label>
+                  <input 
+                    type="text" 
+                    required 
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="e.g. Aman"
+                    style={{
+                      background: '#faf8f5',
+                      color: 'var(--color-abyssal-blue)',
+                      border: '1px solid var(--glass-border)',
+                      borderRadius: '0px',
+                      padding: '10px 12px',
+                      fontSize: '13px',
+                      outline: 'none',
+                      fontFamily: 'inherit'
+                    }}
+                  />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <label style={{ fontSize: '10px', color: 'var(--color-accent)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    Surname (Last Name) *
+                  </label>
+                  <input 
+                    type="text" 
+                    required 
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder="e.g. Arora"
+                    style={{
+                      background: '#faf8f5',
+                      color: 'var(--color-abyssal-blue)',
+                      border: '1px solid var(--glass-border)',
+                      borderRadius: '0px',
+                      padding: '10px 12px',
+                      fontSize: '13px',
+                      outline: 'none',
+                      fontFamily: 'inherit'
+                    }}
+                  />
+                </div>
               </div>
 
+              {/* Email */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '10px', color: 'var(--color-accent)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                   Return Telemetry Channel (Email) *
@@ -322,16 +494,133 @@ const Navbar = () => {
                 />
               </div>
 
+              {/* Row: Role Dropdown & Intent Dropdown */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--spacing-3)' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <label style={{ fontSize: '10px', color: 'var(--color-accent)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    What best describes you? *
+                  </label>
+                  <select 
+                    value={userRole}
+                    onChange={(e) => setUserRole(e.target.value)}
+                    style={{
+                      background: '#faf8f5',
+                      color: 'var(--color-abyssal-blue)',
+                      border: '1px solid var(--glass-border)',
+                      borderRadius: '0px',
+                      padding: '10px 12px',
+                      fontSize: '13px',
+                      outline: 'none',
+                      fontFamily: 'inherit',
+                      height: '38px'
+                    }}
+                  >
+                    <option value="Enthusiast">Enthusiast</option>
+                    <option value="NGO">NGO / Activist</option>
+                    <option value="Government">Government / Officer</option>
+                    <option value="Researcher">Researcher / Scholar</option>
+                    <option value="Media">Media / Journalist</option>
+                    <option value="Citizen Scientist">Citizen Scientist</option>
+                  </select>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <label style={{ fontSize: '10px', color: 'var(--color-accent)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    Why use this site? *
+                  </label>
+                  <select 
+                    value={intent}
+                    onChange={(e) => setIntent(e.target.value)}
+                    style={{
+                      background: '#faf8f5',
+                      color: 'var(--color-abyssal-blue)',
+                      border: '1px solid var(--glass-border)',
+                      borderRadius: '0px',
+                      padding: '10px 12px',
+                      fontSize: '13px',
+                      outline: 'none',
+                      fontFamily: 'inherit',
+                      height: '38px'
+                    }}
+                  >
+                    <option value="Education">Education</option>
+                    <option value="Environmental Awareness">Environmental Awareness</option>
+                    <option value="Scientific Research">Scientific Research</option>
+                    <option value="Legal Recourse / Evidence">Legal Recourse / Evidence</option>
+                    <option value="Public Disclosure">Public Disclosure</option>
+                    <option value="Administrative Enforcement">Administrative Enforcement</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Geographic Information */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)', border: '1px solid var(--glass-border)', padding: 'var(--spacing-3)', background: 'rgba(44, 59, 77, 0.02)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <input 
+                    type="checkbox"
+                    id="fromIndiaCheckbox"
+                    checked={fromIndia}
+                    onChange={(e) => setFromIndia(e.target.checked)}
+                    style={{ accentColor: 'var(--color-accent)', cursor: 'pointer' }}
+                  />
+                  <label htmlFor="fromIndiaCheckbox" style={{ fontSize: '11px', color: 'var(--color-text-primary)', fontWeight: 'bold', cursor: 'pointer' }}>
+                    Are you from India?
+                  </label>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--spacing-3)' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <label style={{ fontSize: '9px', color: 'var(--color-text-secondary)', fontWeight: 'bold', textTransform: 'uppercase' }}>
+                      City
+                    </label>
+                    <input 
+                      type="text"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      placeholder="e.g. Bankura"
+                      style={{
+                        background: '#faf8f5',
+                        color: 'var(--color-abyssal-blue)',
+                        border: '1px solid var(--glass-border)',
+                        borderRadius: '0px',
+                        padding: '8px 10px',
+                        fontSize: '12px',
+                        outline: 'none',
+                        fontFamily: 'inherit'
+                      }}
+                    />
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <label style={{ fontSize: '9px', color: 'var(--color-text-secondary)', fontWeight: 'bold', textTransform: 'uppercase' }}>
+                      State
+                    </label>
+                    <input 
+                      type="text"
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                      placeholder="e.g. West Bengal"
+                      style={{
+                        background: '#faf8f5',
+                        color: 'var(--color-abyssal-blue)',
+                        border: '1px solid var(--glass-border)',
+                        borderRadius: '0px',
+                        padding: '8px 10px',
+                        fontSize: '12px',
+                        outline: 'none',
+                        fontFamily: 'inherit'
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Referral Dropdown */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '10px', color: 'var(--color-accent)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Access Passphrase (Password) *
+                  Where did you hear about us? *
                 </label>
-                <input 
-                  type="password" 
-                  required 
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
+                <select 
+                  value={referral}
+                  onChange={(e) => setReferral(e.target.value)}
                   style={{
                     background: '#faf8f5',
                     color: 'var(--color-abyssal-blue)',
@@ -340,9 +629,46 @@ const Navbar = () => {
                     padding: '10px 12px',
                     fontSize: '13px',
                     outline: 'none',
-                    fontFamily: 'inherit'
+                    fontFamily: 'inherit',
+                    height: '38px'
                   }}
-                />
+                >
+                  <option value="Social Media">Social Media</option>
+                  <option value="Environmental Reports">Environmental Reports</option>
+                  <option value="News / Press">News / Press</option>
+                  <option value="Word of Mouth">Word of Mouth</option>
+                  <option value="Search Engine">Search Engine</option>
+                </select>
+              </div>
+
+              {/* Consent and Notification Checks */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '4px' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <input 
+                    type="checkbox"
+                    required
+                    id="termsCheck"
+                    checked={agreedTerms}
+                    onChange={(e) => setAgreedTerms(e.target.checked)}
+                    style={{ accentColor: 'var(--color-accent)', marginTop: '3px', cursor: 'pointer' }}
+                  />
+                  <label htmlFor="termsCheck" style={{ fontSize: '11px', color: 'var(--color-text-secondary)', lineHeight: '1.4', cursor: 'pointer' }}>
+                    I agree to the Terms and Conditions for secure orbital data access. *
+                  </label>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <input 
+                    type="checkbox"
+                    id="updatesCheck"
+                    checked={receiveUpdates}
+                    onChange={(e) => setReceiveUpdates(e.target.checked)}
+                    style={{ accentColor: 'var(--color-accent)', marginTop: '3px', cursor: 'pointer' }}
+                  />
+                  <label htmlFor="updatesCheck" style={{ fontSize: '11px', color: 'var(--color-text-secondary)', lineHeight: '1.4', cursor: 'pointer' }}>
+                    Receive automated alerts if an active mining disturbance is detected near my specified city.
+                  </label>
+                </div>
               </div>
 
               {/* Submit Button */}
@@ -365,12 +691,12 @@ const Navbar = () => {
                 onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#8b402b'}
                 onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#a35138'}
               >
-                Authenticate Node
+                Create Quick Session
               </button>
             </form>
 
             {/* Google OAuth Option */}
-            <div style={{ margin: '16px 0', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ margin: '8px 0', display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{ flex: 1, height: '1px', backgroundColor: 'var(--glass-border)' }} />
               <span style={{ fontSize: '10px', color: 'var(--color-text-secondary)', fontFamily: 'monospace' }}>OR</span>
               <div style={{ flex: 1, height: '1px', backgroundColor: 'var(--glass-border)' }} />
@@ -378,6 +704,24 @@ const Navbar = () => {
 
             <button 
               onClick={() => {
+                if (!agreedTerms) {
+                  alert("Please agree to the terms and conditions before signing in.");
+                  return;
+                }
+                const profileData = {
+                  firstName: firstName || 'Google',
+                  lastName: lastName || 'User',
+                  role: userRole,
+                  intent,
+                  fromIndia,
+                  city,
+                  state,
+                  referral,
+                  agreedTerms,
+                  receiveUpdates,
+                  email: email || ''
+                };
+                localStorage.setItem('sms_pending_profile_data', JSON.stringify(profileData));
                 signInWithGoogle();
                 setShowModal(false);
               }}

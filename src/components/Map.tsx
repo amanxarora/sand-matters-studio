@@ -19,7 +19,6 @@ import SiteDetailPanel from './SiteDetailPanel';
 
 // Phase Two Cyber HUD Components
 import WelcomeModal from './WelcomeModal';
-import ProfileForm from './ProfileForm';
 import CommunityPanel from './CommunityPanel';
 import Ledger from './Ledger';
 import { supabase } from '../lib/supabaseClient';
@@ -78,6 +77,59 @@ const MapComponent = () => {
       }
     } catch (e) {
       console.error("Failed to fetch analyzed regions:", e);
+    }
+  }, []);
+
+  const fetchAndRenderIsochrone = useCallback(async (coordinates: [number, number]) => {
+    if (!map.current) return;
+    
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+    const url = `${backendUrl}/api/isochrone`;
+    
+    const payload = {
+      locations: [coordinates],
+      range: [900], // 15-minute travelshed default (900s)
+      range_type: 'time',
+      profile: 'driving-car'
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Isochrone API returned status: ${response.status}`);
+      }
+
+      const geojson = await response.json();
+
+      if (map.current.getSource('roi-isochrone')) {
+        (map.current.getSource('roi-isochrone') as maplibregl.GeoJSONSource).setData(sanitizeGeoJSON(geojson));
+      } else {
+        map.current.addSource('roi-isochrone', {
+          type: 'geojson',
+          data: sanitizeGeoJSON(geojson)
+        });
+
+        map.current.addLayer({
+          id: 'roi-isochrone-layer',
+          type: 'fill',
+          source: 'roi-isochrone',
+          layout: {},
+          paint: {
+            'fill-color': '#a35138',
+            'fill-opacity': 0.12,
+            'fill-outline-color': '#a35138'
+          }
+        }, 'gl-draw-polygon-fill-inactive.cold');
+      }
+    } catch (err) {
+      console.error('[ISOCHRONE ENGINE] Error rendering travelshed:', err);
     }
   }, []);
   
@@ -429,7 +481,8 @@ const MapComponent = () => {
       const [geocodeResult, riversResult, nearbyPlacesResult] = await Promise.all([
         reverseGeocode(lng, lat),
         fetchRiversInROI(bbox),
-        fetchNearbyPlaces(lng, lat)
+        fetchNearbyPlaces(lng, lat),
+        fetchAndRenderIsochrone([lng, lat])
       ]);
       
       setSelectedRoi({
@@ -452,6 +505,9 @@ const MapComponent = () => {
        setSelectedRoi(null);
        if (map.current?.getSource('roi-rivers')) {
          (map.current.getSource('roi-rivers') as maplibregl.GeoJSONSource).setData(sanitizeGeoJSON({ type: 'FeatureCollection', features: [] }));
+       }
+       if (map.current?.getSource('roi-isochrone')) {
+         (map.current.getSource('roi-isochrone') as maplibregl.GeoJSONSource).setData(sanitizeGeoJSON({ type: 'FeatureCollection', features: [] }));
        }
     });
 
@@ -621,7 +677,6 @@ const MapComponent = () => {
 
       {/* Cyber-Tactical Gatekeeping & Profile Calibration Modals */}
       <WelcomeModal />
-      <ProfileForm />
     </div>
   );
 };

@@ -57,6 +57,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      const pendingData = localStorage.getItem('sms_pending_profile_data');
+      if (pendingData) {
+        localStorage.setItem(`sms_profile_data_${user.id}`, pendingData);
+        localStorage.removeItem('sms_pending_profile_data');
+      }
+    }
+  }, [user]);
+
   const signInWithGoogle = async () => {
     localStorage.removeItem('sms_mock_user');
     await supabase.auth.signInWithOAuth({

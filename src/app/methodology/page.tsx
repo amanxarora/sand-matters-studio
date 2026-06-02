@@ -147,7 +147,7 @@ export default function MethodologyPage() {
             <p className={styles.sectionText}>
               The pipeline projects raw reflectance bands into four mathematical indices to isolate vegetation cover, bare soil exposure, open water boundaries, and built-up structures:
             </p>
-            <div className={styles.grid}>
+            <div className={styles.grid2Col}>
               
               {/* NDVI Card */}
               <div className={styles.card}>
@@ -367,7 +367,7 @@ export default function MethodologyPage() {
               In parallel to the spectral biophysical pipeline, our system runs a dedicated neural object detection layer to isolate physical machinery and extraction operations on the ground:
             </p>
             
-            <div className={styles.grid}>
+            <div className={styles.grid2Col}>
               <div className={styles.card}>
                 <h4 className={styles.cardTitle}>Ultralytics YOLOv8s</h4>
                 <p className={styles.cardText}>

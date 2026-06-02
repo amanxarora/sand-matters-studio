@@ -51,6 +51,19 @@
   margin-bottom: var(--spacing-8);
 }
 
+.grid2Col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+}
+
+@media (max-width: 768px) {
+  .grid2Col {
+    grid-template-columns: 1fr;
+  }
+}
+
 .card {
   background-color: var(--color-surface);
   border: 1px solid var(--glass-border);
