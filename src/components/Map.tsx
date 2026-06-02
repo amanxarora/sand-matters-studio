@@ -544,15 +544,29 @@ const MapComponent = () => {
           type: 'geojson',
           data: sanitizeGeoJSON(isochroneData)
         });
+        
+        // Beautiful premium blue travelshed fill
         map.current.addLayer({
           id: 'roi-isochrone-layer',
           type: 'fill',
           source: 'roi-isochrone',
           layout: {},
           paint: {
-            'fill-color': '#a35138',
-            'fill-opacity': 0.12,
-            'fill-outline-color': '#a35138'
+            'fill-color': '#2563eb', // Beautiful royal blue
+            'fill-opacity': 0.3      // Increased opacity for clearer visualization
+          }
+        }, 'gl-draw-polygon-fill-inactive.cold');
+
+        // Premium high-fidelity blue border around the travelshed region
+        map.current.addLayer({
+          id: 'roi-isochrone-border-layer',
+          type: 'line',
+          source: 'roi-isochrone',
+          layout: {},
+          paint: {
+            'line-color': '#1d4ed8', // Darker royal blue for high contrast border
+            'line-width': 2.5,       // Distinct border thickness
+            'line-opacity': 0.85     // Highly visible border line
           }
         }, 'gl-draw-polygon-fill-inactive.cold');
       }
