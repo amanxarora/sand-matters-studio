@@ -124,32 +124,6 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
         </p>
       </div>
 
-      <div style={{ backgroundColor: 'var(--color-background)', padding: 'var(--spacing-4)', borderRadius: 'var(--border-radius-md)', border: '1px solid var(--glass-border)', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)' }}>
-        <h3 style={{ fontSize: 'var(--font-size-base)', color: 'var(--color-text-primary)', margin: 0 }}>
-          Report Sand Activity
-        </h3>
-        <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)', lineHeight: 1.5, margin: 0 }}>
-          Protecting riverine corridors requires immediate local coordination and crowdsourced ground-truth verification. Local observers, citizen scientists, and environmental wardens can submit specific decimal coordinate points of suspected mining activity, supplemented by geotagged mobile photography.
-        </p>
-        <Link href="/collaboration" style={{
-          display: 'inline-block',
-          width: 'fit-content',
-          textAlign: 'center',
-          backgroundColor: '#a35138',
-          color: '#fff',
-          textDecoration: 'none',
-          padding: '8px var(--spacing-4)',
-          borderRadius: 'var(--border-radius-sm)',
-          fontSize: 'var(--font-size-sm)',
-          fontWeight: 600,
-          transition: 'var(--transition-fast)'
-        }}
-        onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#8b402b'}
-        onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#a35138'}
-        >
-          Report Sand Activity
-        </Link>
-      </div>
 
       <div style={{ backgroundColor: 'var(--color-background)', padding: 'var(--spacing-4)', borderRadius: 'var(--border-radius-md)', border: '1px solid var(--glass-border)' }}>
         <h3 style={{ fontSize: 'var(--font-size-base)', color: 'var(--color-text-primary)', marginBottom: 'var(--spacing-3)' }}>
@@ -202,15 +176,10 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'stretch',
-            minHeight: '220px',
+            minHeight: '200px',
             gap: 'var(--spacing-3)'
           }}>
             <style dangerouslySetInnerHTML={{__html: `
-              @keyframes scan-loading {
-                0% { top: 0%; }
-                50% { top: 100%; }
-                100% { top: 0%; }
-              }
               @keyframes fade-in-up {
                 0% { opacity: 0; transform: translateY(10px); }
                 100% { opacity: 1; transform: translateY(0); }
@@ -219,14 +188,10 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                 0% { opacity: 1; transform: translateY(0); }
                 100% { opacity: 0; transform: translateY(-10px); }
               }
-              @keyframes pulse-cyan {
-                0%, 100% { color: #06b6d4; opacity: 0.8; }
-                50% { color: #22d3ee; opacity: 1; }
-              }
             `}} />
             
             <div style={{ fontSize: '10px', color: 'var(--color-text-secondary)', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 'bold', textAlign: 'center', borderBottom: '1px solid var(--glass-border)', paddingBottom: 'var(--spacing-2)' }}>
-              // BACKEND PIPELINE INGESTION TELEMETRY //
+              BACKEND PIPELINE INGESTION TELEMETRY
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-2)', flex: 1, justifyContent: 'center' }}>
@@ -241,14 +206,14 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                   fontSize: '10px',
                   animation: 'fade-out-up 1.2s forwards'
                 }}>
-                  <span style={{ fontWeight: 'bold' }}>[DONE]</span>
+                  <span style={{ fontWeight: 'bold' }}>DONE</span>
                   <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {telemetrySteps[telemetryStep - 1]}
                   </span>
                 </div>
               )}
 
-              {/* Current Active Step (Pulsing / Processing) */}
+              {/* Current Active Step (Processing) */}
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -258,16 +223,10 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                 fontWeight: 'bold',
                 animation: 'fade-in-up 0.3s ease-out'
               }}>
-                <span style={{ 
-                  animation: 'pulse-cyan 1.5s infinite', 
-                  display: 'inline-flex', 
-                  alignItems: 'center', 
-                  gap: '4px' 
-                }}>
-                  <span>⚡</span>
-                  <span>[RUNNING]</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                  <span>RUNNING</span>
                 </span>
-                <span style={{ animation: 'pulse-cyan 1.5s infinite' }}>
+                <span>
                   {telemetrySteps[telemetryStep]}
                 </span>
               </div>
@@ -283,7 +242,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                   fontSize: '10px',
                   animation: 'fade-in-up 0.5s ease-out'
                 }}>
-                  <span style={{ fontWeight: 'bold' }}>[NEXT]</span>
+                  <span style={{ fontWeight: 'bold' }}>NEXT</span>
                   <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {telemetrySteps[telemetryStep + 1]}
                   </span>
@@ -300,7 +259,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                   opacity: 0.35,
                   fontSize: '9px'
                 }}>
-                  <span style={{ fontWeight: 'bold' }}>[WAIT]</span>
+                  <span style={{ fontWeight: 'bold' }}>WAIT</span>
                   <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {telemetrySteps[telemetryStep + 2]}
                   </span>
@@ -312,18 +271,6 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
               <span>PIPELINE TELEMETRY STATUS</span>
               <span>{Math.round(((telemetryStep + 1) / telemetrySteps.length) * 100)}% COMPLETE</span>
             </div>
-            
-            {/* Cyber scanline overlay */}
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '2px',
-              backgroundColor: 'rgba(6, 182, 212, 0.25)',
-              boxShadow: '0 0 8px rgba(6, 182, 212, 0.5)',
-              animation: 'scan-loading 2.5s infinite linear'
-            }} />
           </div>
         </div>
       );

@@ -221,7 +221,8 @@ const MapComponent = () => {
                             layer.id === 'analyzed-regions-outline' ||
                             layer.id === 'roi-gee-raster-layer' || 
                             layer.id === 'roi-rivers-layer' || 
-                            layer.id === 'yolo-detections-outline';
+                            layer.id === 'yolo-detections-outline' ||
+                            layer.id.includes('gl-draw');
         
         if (!isProtected) {
           const isRoadRelated = layer.id.includes('road') || 
