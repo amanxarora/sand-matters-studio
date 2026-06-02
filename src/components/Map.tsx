@@ -553,13 +553,13 @@ const MapComponent = () => {
 
 
   const handleAnalyze = async (startYear: number, endYear: number, sensitivity: string) => {
-    if (!selectedRoi?.bbox) return;
+    if (!selectedRoi?.bbox || !selectedRoi.feature) return;
     setAnalyzing(true);
     try {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
 
-      await fetch(`${BACKEND_URL}/api/pipeline/analyze`, {
+      const response = await fetch(`${BACKEND_URL}/api/pipeline/analyze`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -572,16 +572,81 @@ const MapComponent = () => {
           sensitivity
         })
       });
-      setTimeout(() => {
-        setAnalyzing(false);
-        refetchSites();
-        fetchDetections();
-        fetchRegions();
-        setSelectedRoi(prev => prev ? { ...prev, analyzed: true } : null);
-        setActiveRegionId(101); // Assign a simulated region ID to establish community chat thread link
+
+      if (!response.ok) {
+        throw new Error("Failed to start pipeline analysis");
+      }
+
+      // Compute the centroid of the active drawn polygon to identify it in the regions database
+      const drawCentroid = turf.centroid(selectedRoi.feature);
+
+      // Start polling the backend /regions list every 5 seconds
+      const startTime = Date.now();
+      const pollInterval = setInterval(async () => {
+        try {
+          const res = await fetch(`${BACKEND_URL}/api/pipeline/regions`);
+          if (!res.ok) return;
+          const data = await res.json();
+
+          // Find the newly saved region polygon containing our drawn centroid
+          const newRegion = data.features?.find((f: any) => {
+            if (f.geometry && f.geometry.type === 'Polygon') {
+              try {
+                return turf.booleanPointInPolygon(drawCentroid, f);
+              } catch (e) {
+                return false;
+              }
+            }
+            return false;
+          });
+
+          const elapsed = Date.now() - startTime;
+          if (newRegion) {
+            clearInterval(pollInterval);
+            setAnalyzing(false);
+
+            // Update interactive click regions on map
+            const source = map.current?.getSource('analyzed-regions') as maplibregl.GeoJSONSource;
+            if (source) {
+              source.setData(sanitizeGeoJSON(data));
+            }
+            
+            refetchSites();
+            fetchDetections();
+
+            // Clear the raw drawing overlay so the colored DB layer renders cleanly underneath
+            if (draw.current) {
+              draw.current.deleteAll();
+            }
+
+            // Select the newly-saved database region with its permanent Supabase Storage properties
+            setSelectedRoi({
+              loading: false,
+              geocode: selectedRoi.geocode,
+              rivers: selectedRoi.rivers,
+              nearbyPlaces: selectedRoi.nearbyPlaces,
+              bbox: selectedRoi.bbox,
+              feature: newRegion,
+              analyzed: true
+            });
+
+            const regionId = Number(newRegion.properties?.id || 101);
+            setActiveRegionId(regionId);
+            setIsCommunityOpen(true);
+          } else if (elapsed > 180000) { // 3 minutes timeout
+            clearInterval(pollInterval);
+            setAnalyzing(false);
+            alert("The pipeline analysis is taking longer than usual. Please close this card and click the analyzed region on the map once it renders.");
+          }
+        } catch (pollErr) {
+          console.error("Error polling regions during analysis:", pollErr);
+        }
       }, 5000);
+
     } catch (e) {
+      console.error("Error triggering pipeline:", e);
       setAnalyzing(false);
+      alert("Failed to initiate pipeline. Please check backend status and secrets configurations.");
     }
   };
 
