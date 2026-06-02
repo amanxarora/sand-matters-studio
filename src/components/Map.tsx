@@ -84,8 +84,7 @@ const MapComponent = () => {
   }, []);
 
   const fetchAndRenderIsochrone = useCallback(async (coordinates: [number, number]) => {
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-    const url = `${backendUrl}/api/isochrone`;
+    const url = `${BACKEND_URL}/api/isochrone`;
     
     const payload = {
       locations: [coordinates],
