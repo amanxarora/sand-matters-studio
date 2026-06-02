@@ -9,36 +9,8 @@ import Link from 'next/link';
 const roboflowTargets = [
   {
     id: 1,
-    title: "Truck / Excavator Detection",
-    badge: "TRK_EXC_01",
-    description: "Real-time object boundary verification identifying active multi-axle sand loader vehicles and mechanical excavators operating in instream zones.",
-    image: "/images/roboflow/roboflow_1.jpg"
-  },
-  {
-    id: 2,
-    title: "Excavation Pit / Water Expansion",
-    badge: "PIT_02",
-    description: "Deep learning extraction pit isolation capturing open active water-filled voids and sand stockpiling cluster profiles.",
-    image: "/images/roboflow/roboflow_2.jpg"
-  },
-  {
-    id: 3,
-    title: "Sand Haul Access Road",
-    badge: "ROAD_03",
-    description: "Automated tracking of heavy vehicle transit pathways cutting through protected riparian buffers and sanctuary borders.",
-    image: "/images/roboflow/roboflow_3.jpg"
-  },
-  {
-    id: 4,
-    title: "Instream Dredging Vessel",
-    badge: "VSL_04",
-    description: "Detections of suction pump pontoons and heavy sand barges operating directly within active flowing riverbed channels.",
-    image: "/images/roboflow/roboflow_4.jpg"
-  },
-  {
-    id: 5,
     title: "Live YOLOv8s Spatial Overlay Proof",
-    badge: "LIVE_YOLO_05",
+    badge: "LIVE_YOLO",
     description: "Real-time spatial projection showing georeferenced bounding box overlays on active riverbed excavation zones.",
     image: "/images/yolo/yolo_detection_proof.png"
   }
@@ -863,79 +835,29 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                 justifyContent: 'space-between',
                 alignItems: 'center'
               }}>
-                <span>Roboflow Target Audit Carousel</span>
-                <span style={{ fontSize: '9px', color: 'var(--color-accent)', fontFamily: 'monospace' }}>[v2i.yolov8]</span>
+                <span>YOLOv8s Neural Object Detection</span>
+                <span style={{ fontSize: '9px', color: 'var(--color-accent)', fontFamily: 'monospace' }}>[LIVE_YOLO]</span>
               </h3>
               
               <div className="roboflow-carousel-wrapper">
                 <img 
-                  src={roboflowTargets[carouselIndex].image} 
-                  alt={roboflowTargets[carouselIndex].title}
+                  src={roboflowTargets[0].image} 
+                  alt={roboflowTargets[0].title}
                   className="roboflow-carousel-img"
                   onError={(e) => {
-                    e.currentTarget.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="75" viewBox="0 0 100 75" style="background:%231b1e22;"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%238e9cae" font-family="monospace" font-size="9">${roboflowTargets[carouselIndex].badge}</text></svg>`;
+                    e.currentTarget.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="75" viewBox="0 0 100 75" style="background:%231b1e22;"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%238e9cae" font-family="monospace" font-size="9">${roboflowTargets[0].badge}</text></svg>`;
                   }}
                 />
-                <div className="roboflow-carousel-badge">{roboflowTargets[carouselIndex].badge}</div>
+                <div className="roboflow-carousel-badge">{roboflowTargets[0].badge}</div>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-1)' }}>
                 <div style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold', color: 'var(--color-text-primary)' }}>
-                  {roboflowTargets[carouselIndex].title}
+                  {roboflowTargets[0].title}
                 </div>
                 <div style={{ fontSize: '11px', color: 'var(--color-text-secondary)', lineHeight: 1.4 }}>
-                  {roboflowTargets[carouselIndex].description}
+                  {roboflowTargets[0].description}
                 </div>
-              </div>
-
-              {/* Carousel Pagination Controls */}
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center', 
-                borderTop: '1px solid var(--glass-border)',
-                paddingTop: 'var(--spacing-2)',
-                marginTop: 'var(--spacing-1)'
-              }}>
-                <button
-                  onClick={() => setCarouselIndex((prev) => (prev === 0 ? 4 : prev - 1))}
-                  style={{
-                    backgroundColor: 'transparent',
-                    color: 'var(--color-text-secondary)',
-                    border: '1px solid var(--glass-border)',
-                    borderRadius: 'var(--border-radius-sm)',
-                    padding: '4px 10px',
-                    cursor: 'pointer',
-                    fontSize: '12px',
-                    fontWeight: 'bold',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-text-primary)'}
-                  onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
-                >
-                  ← PREV
-                </button>
-                <span style={{ fontSize: '11px', fontFamily: 'monospace', color: 'var(--color-text-secondary)' }}>
-                  {carouselIndex + 1} / 5
-                </span>
-                <button
-                  onClick={() => setCarouselIndex((prev) => (prev === 4 ? 0 : prev + 1))}
-                  style={{
-                    backgroundColor: 'transparent',
-                    color: 'var(--color-text-secondary)',
-                    border: '1px solid var(--glass-border)',
-                    borderRadius: 'var(--border-radius-sm)',
-                    padding: '4px 10px',
-                    cursor: 'pointer',
-                    fontSize: '12px',
-                    fontWeight: 'bold',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-text-primary)'}
-                  onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}
-                >
-                  NEXT →
-                </button>
               </div>
             </div>
           )}
