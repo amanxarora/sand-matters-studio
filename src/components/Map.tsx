@@ -465,7 +465,8 @@ const MapComponent = () => {
       const [geocodeResult, riversResult, nearbyPlacesResult] = await Promise.all([
         reverseGeocode(lng, lat),
         fetchRiversInROI(bbox),
-        fetchNearbyPlaces(lng, lat)
+        fetchNearbyPlaces(lng, lat),
+        fetchAndRenderIsochrone([lng, lat])
       ]);
       
       setSelectedRoi({
@@ -592,8 +593,6 @@ const MapComponent = () => {
 
       // Compute the centroid of the active drawn polygon to identify it in the regions database
       const drawCentroid = turf.centroid(selectedRoi.feature);
-      const [lng, lat] = drawCentroid.geometry.coordinates;
-      fetchAndRenderIsochrone([lng, lat]);
 
       // Start polling the backend /regions list every 5 seconds
       const startTime = Date.now();
