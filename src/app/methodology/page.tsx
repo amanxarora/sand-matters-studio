@@ -24,7 +24,6 @@ export default function MethodologyPage() {
           
           {/* Hero Section */}
           <div className={styles.hero}>
-            <div className={styles.heroTagline}>TECHNICAL CLEARANCE: LEVEL_4_METHODOLOGY</div>
             <h1 className={styles.heroTitle} style={{ maxWidth: '900px', margin: '0 auto var(--spacing-4) auto' }}>
               Scientific Methodology &amp; 9-Stage Computational Pipeline
             </h1>
@@ -79,17 +78,17 @@ export default function MethodologyPage() {
             </div>
             
             <div style={{
-              backgroundColor: 'rgba(12, 15, 18, 0.9)',
+              backgroundColor: 'var(--color-surface)',
               border: '1px solid var(--glass-border)',
               padding: 'var(--spacing-4)',
               borderRadius: 'var(--border-radius-sm)',
               fontFamily: 'monospace',
               fontSize: '0.9rem',
               lineHeight: '1.6',
-              color: 'var(--color-accent)',
+              color: 'var(--color-text-primary)',
               marginTop: 'var(--spacing-4)'
             }}>
-              <strong>CONTEXT ADJUSTMENT FORMULA:</strong><br />
+              <strong style={{ color: 'var(--color-accent)' }}>CONTEXT ADJUSTMENT FORMULA:</strong><br />
               &gt; n_adjusted = n_base + aridity_adj + NDVI_adj + landcover_adj
             </div>
           </div>
@@ -158,7 +157,7 @@ export default function MethodologyPage() {
                 </div>
                 <h3 className={styles.cardTitle}>Normalized Difference Vegetation Index</h3>
                 <div style={{
-                  backgroundColor: 'rgba(12, 15, 18, 0.9)',
+                  backgroundColor: 'var(--color-surface)',
                   border: '1px solid var(--glass-border)',
                   padding: '12px',
                   borderRadius: 'var(--border-radius-sm)',
@@ -184,7 +183,7 @@ export default function MethodologyPage() {
                 </div>
                 <h3 className={styles.cardTitle}>Bare Soil Index</h3>
                 <div style={{
-                  backgroundColor: 'rgba(12, 15, 18, 0.9)',
+                  backgroundColor: 'var(--color-surface)',
                   border: '1px solid var(--glass-border)',
                   padding: '12px',
                   borderRadius: 'var(--border-radius-sm)',
@@ -210,7 +209,7 @@ export default function MethodologyPage() {
                 </div>
                 <h3 className={styles.cardTitle}>Modified Normalized Difference Water Index</h3>
                 <div style={{
-                  backgroundColor: 'rgba(12, 15, 18, 0.9)',
+                  backgroundColor: 'var(--color-surface)',
                   border: '1px solid var(--glass-border)',
                   padding: '12px',
                   borderRadius: 'var(--border-radius-sm)',
@@ -218,7 +217,7 @@ export default function MethodologyPage() {
                   textAlign: 'center',
                   fontSize: '1rem',
                   fontWeight: 'bold',
-                  color: '#06b6d4',
+                  color: '#0891b2',
                   margin: '12px 0'
                 }}>
                   MNDWI = (Green - SWIR) / (Green + SWIR)
@@ -236,7 +235,7 @@ export default function MethodologyPage() {
                 </div>
                 <h3 className={styles.cardTitle}>Normalized Difference Built-Up Index</h3>
                 <div style={{
-                  backgroundColor: 'rgba(12, 15, 18, 0.9)',
+                  backgroundColor: 'var(--color-surface)',
                   border: '1px solid var(--glass-border)',
                   padding: '12px',
                   borderRadius: 'var(--border-radius-sm)',
@@ -257,17 +256,17 @@ export default function MethodologyPage() {
             </div>
 
             <div style={{
-              backgroundColor: 'rgba(12, 15, 18, 0.9)',
+              backgroundColor: 'var(--color-surface)',
               border: '1px solid var(--glass-border)',
               padding: 'var(--spacing-4)',
               borderRadius: 'var(--border-radius-sm)',
               fontFamily: 'monospace',
               fontSize: '0.9rem',
               lineHeight: '1.6',
-              color: '#10b981',
+              color: 'var(--color-text-primary)',
               marginTop: 'var(--spacing-4)'
             }}>
-              <strong>TEMPORAL CHANGE MAP EQUATION:</strong><br />
+              <strong style={{ color: 'var(--color-accent)' }}>TEMPORAL CHANGE MAP EQUATION:</strong><br />
               &gt; Change map = Final_year_composite - Baseline_year_composite
             </div>
           </div>
@@ -327,22 +326,21 @@ export default function MethodologyPage() {
             </p>
             
             <div style={{
-              backgroundColor: 'rgba(12, 15, 18, 0.9)',
+              backgroundColor: 'var(--color-surface)',
               border: '1px solid var(--glass-border)',
               padding: 'var(--spacing-4)',
               borderRadius: 'var(--border-radius-sm)',
               fontFamily: 'monospace',
               fontSize: '0.85rem',
               lineHeight: '1.8',
-              color: '#06b6d4',
               display: 'flex',
               flexDirection: 'column',
               gap: '6px',
               marginBottom: 'var(--spacing-4)'
             }}>
-              <div><strong>&gt; NDVI threshold = mean_NDVI_baseline - (n_adjusted x sd_NDVI_baseline)</strong></div>
-              <div><strong>&gt; BSI threshold = mean_BSI_baseline + (n_adjusted x sd_BSI_baseline)</strong></div>
-              <div><strong>&gt; MNDWI threshold = mean_MNDWI_baseline + (n_adjusted x sd_MNDWI_baseline)</strong></div>
+              <div><span style={{ color: 'var(--color-text-secondary)' }}>&gt;</span> <strong style={{ color: 'var(--color-success)' }}>NDVI threshold = mean_NDVI_baseline - (n_adjusted x sd_NDVI_baseline)</strong></div>
+              <div><span style={{ color: 'var(--color-text-secondary)' }}>&gt;</span> <strong style={{ color: 'var(--color-warning)' }}>BSI threshold = mean_BSI_baseline + (n_adjusted x sd_BSI_baseline)</strong></div>
+              <div><span style={{ color: 'var(--color-text-secondary)' }}>&gt;</span> <strong style={{ color: '#0891b2' }}>MNDWI threshold = mean_MNDWI_baseline + (n_adjusted x sd_MNDWI_baseline)</strong></div>
             </div>
 
             <p className={styles.sectionText}>

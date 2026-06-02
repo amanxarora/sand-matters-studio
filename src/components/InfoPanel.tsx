@@ -34,6 +34,13 @@ const roboflowTargets = [
     badge: "VSL_04",
     description: "Detections of suction pump pontoons and heavy sand barges operating directly within active flowing riverbed channels.",
     image: "/images/roboflow/roboflow_4.jpg"
+  },
+  {
+    id: 5,
+    title: "Live YOLOv8s Spatial Overlay Proof",
+    badge: "LIVE_YOLO_05",
+    description: "Real-time spatial projection showing georeferenced bounding box overlays on active riverbed excavation zones.",
+    image: "/images/yolo/yolo_detection_proof.png"
   }
 ];
 
@@ -653,17 +660,17 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                 <VisualSlider 
                   imageBefore={
                     activeSpectralIndex === 'ndvi' 
-                      ? properties.ndvi_baseline_url || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80' 
+                      ? properties.ndvi_baseline_url || '/images/gee/ndvi_baseline.png' 
                       : activeSpectralIndex === 'bsi'
-                        ? properties.bsi_baseline_url || 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80'
-                        : properties.mndwi_baseline_url || 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=600&q=80'
+                        ? properties.bsi_baseline_url || '/images/gee/bsi_baseline.png'
+                        : properties.mndwi_baseline_url || '/images/gee/mndwi_baseline.png'
                   }
                   imageAfter={
                     activeSpectralIndex === 'ndvi'
-                      ? properties.ndvi_compare_url || 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80'
+                      ? properties.ndvi_compare_url || '/images/gee/ndvi_compare.png'
                       : activeSpectralIndex === 'bsi'
-                        ? properties.bsi_compare_url || 'https://images.unsplash.com/photo-1509316975850-ff9c5edd0ea9?auto=format&fit=crop&w=600&q=80'
-                        : properties.mndwi_compare_url || 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=600&q=80'
+                        ? properties.bsi_compare_url || '/images/gee/bsi_compare.png'
+                        : properties.mndwi_compare_url || '/images/gee/mndwi_compare.png'
                   }
                   labelBefore={`GEE [${startYear}]`}
                   labelAfter={`GEE [${endYear}]`}
@@ -835,7 +842,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                   position: absolute;
                   bottom: 6px;
                   right: 6px;
-                  background-color: rgba(27, 30, 34, 0.9);
+                  background-color: var(--color-surface);
                   color: var(--color-success);
                   font-family: monospace;
                   font-size: 10px;
@@ -891,7 +898,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                 marginTop: 'var(--spacing-1)'
               }}>
                 <button
-                  onClick={() => setCarouselIndex((prev) => (prev === 0 ? 3 : prev - 1))}
+                  onClick={() => setCarouselIndex((prev) => (prev === 0 ? 4 : prev - 1))}
                   style={{
                     backgroundColor: 'transparent',
                     color: 'var(--color-text-secondary)',
@@ -909,10 +916,10 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                   ← PREV
                 </button>
                 <span style={{ fontSize: '11px', fontFamily: 'monospace', color: 'var(--color-text-secondary)' }}>
-                  {carouselIndex + 1} / 4
+                  {carouselIndex + 1} / 5
                 </span>
                 <button
-                  onClick={() => setCarouselIndex((prev) => (prev === 3 ? 0 : prev + 1))}
+                  onClick={() => setCarouselIndex((prev) => (prev === 4 ? 0 : prev + 1))}
                   style={{
                     backgroundColor: 'transparent',
                     color: 'var(--color-text-secondary)',
@@ -1034,27 +1041,43 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
               </div>
             </div>
 
+            {numRivers === 0 && (
+              <div style={{ 
+                color: 'var(--color-danger)', 
+                fontSize: '12px', 
+                fontFamily: 'var(--font-family-base), system-ui, sans-serif',
+                lineHeight: '1.4',
+                backgroundColor: 'rgba(239, 68, 68, 0.05)',
+                border: '1px solid rgba(239, 68, 68, 0.2)',
+                padding: 'var(--spacing-3)',
+                marginBottom: 'var(--spacing-3)',
+                borderRadius: 'var(--border-radius-sm)'
+              }}>
+                ⚠️ <strong>VERIFICATION BLOCKED</strong>: No rivers detected inside the drawn boundary. Sand mining extraction analysis requires a valid river corridor to run. Please draw a polygon enclosing a river channel.
+              </div>
+            )}
+
             <button 
               onClick={() => {
-                if (startYear <= endYear) {
+                if (startYear <= endYear && numRivers > 0) {
                   onAnalyze(startYear, endYear, sensitivity);
                 }
               }} 
-              disabled={isAnalyzing || startYear > endYear}
+              disabled={isAnalyzing || startYear > endYear || numRivers === 0}
               style={{
                 width: '100%',
                 padding: '12px',
-                backgroundColor: isAnalyzing || startYear > endYear ? 'var(--color-surface-hover)' : 'var(--color-success)',
-                color: '#fff',
+                backgroundColor: isAnalyzing || startYear > endYear || numRivers === 0 ? 'var(--color-surface-hover)' : 'var(--color-success)',
+                color: isAnalyzing || startYear > endYear || numRivers === 0 ? 'var(--color-text-secondary)' : '#fff',
                 border: 'none',
                 borderRadius: 'var(--border-radius-md)',
-                cursor: isAnalyzing || startYear > endYear ? 'not-allowed' : 'pointer',
+                cursor: isAnalyzing || startYear > endYear || numRivers === 0 ? 'not-allowed' : 'pointer',
                 fontWeight: 600,
                 fontSize: 'var(--font-size-base)',
                 transition: 'var(--transition-fast)'
               }}
             >
-              {isAnalyzing ? 'Processing Imagery...' : 'Run Pipeline Analysis'}
+              {isAnalyzing ? 'Processing Imagery...' : numRivers === 0 ? 'Analysis Locked (No River)' : 'Run Pipeline Analysis'}
             </button>
 
             <button 
@@ -1115,7 +1138,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
             left: '50%',
             transform: 'translate(-50%, -50%)',
             zIndex: 10,
-            backgroundColor: 'rgba(27, 30, 34, 0.97)',
+            backgroundColor: 'var(--color-surface)',
             border: '1px solid var(--glass-border)',
             borderRadius: 'var(--border-radius-md)',
             padding: 'var(--spacing-6)',

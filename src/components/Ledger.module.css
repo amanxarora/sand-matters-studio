@@ -112,7 +112,7 @@
 }
 
 .th {
-  background-color: rgba(27, 30, 34, 0.9);
+  background-color: var(--color-surface);
   color: var(--color-accent);
   font-family: monospace;
   font-weight: bold;
