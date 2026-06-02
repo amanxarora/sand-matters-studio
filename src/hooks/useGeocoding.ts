@@ -18,14 +18,18 @@ export const useGeocoding = () => {
   const reverseGeocode = async (lng: number, lat: number): Promise<GeocodeData | null> => {
     setLoading(true);
     setError(null);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
+
     try {
       const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`, {
         headers: {
-          // Nominatim requires a user-agent
           'User-Agent': 'IllegalSandMiningApp/1.0'
-        }
+        },
+        signal: controller.signal
       });
       
+      clearTimeout(timeoutId);
       if (!res.ok) throw new Error("Failed to reverse geocode");
       
       const data = await res.json();
@@ -88,9 +92,9 @@ export const useGeocoding = () => {
       };
     };
 
-    // AbortController for strict 4.5 seconds query timeout
+    // AbortController for strict 1.5 seconds query timeout
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4500);
+    const timeoutId = setTimeout(() => controller.abort(), 1500);
 
     try {
       const query = `
@@ -162,9 +166,12 @@ export const useGeocoding = () => {
   const fetchNearbyPlaces = async (lng: number, lat: number) => {
     setLoading(true);
     setError(null);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1500);
+
     try {
       const query = `
-        [out:json][timeout:15];
+        [out:json][timeout:5];
         (
           node["place"="city"](around:50000, ${lat}, ${lng});
           node["place"~"town|village"](around:20000, ${lat}, ${lng});
@@ -172,15 +179,16 @@ export const useGeocoding = () => {
         out body;
       `;
       
-      // Use Kumi Systems public overpass instance which does not block browser user-agents
       const res = await fetch('https://overpass.kumi.systems/api/interpreter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: new URLSearchParams({ data: query })
+        body: new URLSearchParams({ data: query }),
+        signal: controller.signal
       });
       
+      clearTimeout(timeoutId);
       if (!res.ok) throw new Error("Failed to fetch nearby places");
       
       const data = await res.json();
@@ -222,6 +230,7 @@ export const useGeocoding = () => {
       
       return sortedPlaces;
     } catch (err: any) {
+      clearTimeout(timeoutId);
       console.error("Error fetching nearby places:", err);
       return [];
     } finally {
