@@ -841,22 +841,24 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
               
               <div className="roboflow-carousel-wrapper">
                 <img 
-                  src={roboflowTargets[0].image} 
-                  alt={roboflowTargets[0].title}
+                  src={properties.yolo_annotated_url || roboflowTargets[0].image} 
+                  alt={properties.yolo_annotated_url ? 'Live YOLO Detection for This Region' : roboflowTargets[0].title}
                   className="roboflow-carousel-img"
                   onError={(e) => {
-                    e.currentTarget.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="75" viewBox="0 0 100 75" style="background:%231b1e22;"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%238e9cae" font-family="monospace" font-size="9">${roboflowTargets[0].badge}</text></svg>`;
+                    e.currentTarget.src = roboflowTargets[0].image;
                   }}
                 />
-                <div className="roboflow-carousel-badge">{roboflowTargets[0].badge}</div>
+                <div className="roboflow-carousel-badge">{properties.yolo_annotated_url ? 'LIVE_REGION' : roboflowTargets[0].badge}</div>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-1)' }}>
                 <div style={{ fontSize: 'var(--font-size-sm)', fontWeight: 'bold', color: 'var(--color-text-primary)' }}>
-                  {roboflowTargets[0].title}
+                  {properties.yolo_annotated_url ? 'Region-Specific YOLO Detections' : roboflowTargets[0].title}
                 </div>
                 <div style={{ fontSize: '11px', color: 'var(--color-text-secondary)', lineHeight: 1.4 }}>
-                  {roboflowTargets[0].description}
+                  {properties.yolo_annotated_url 
+                    ? 'Live bounding box overlay from the YOLOv8s model inference on this region\'s satellite crop. Detections include pits, trucks, and haul roads.'
+                    : roboflowTargets[0].description}
                 </div>
               </div>
             </div>
