@@ -162,43 +162,39 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
 
           {/* Telemetry Loader */}
           <div style={{
-            backgroundColor: 'var(--color-background)',
-            backgroundImage: 'linear-gradient(180deg, rgba(27, 30, 34, 0.85) 0%, rgba(17, 19, 21, 0.95) 100%)',
+            backgroundColor: 'transparent',
             padding: 'var(--spacing-5) var(--spacing-4)',
-            borderRadius: 'var(--border-radius-md)',
+            borderRadius: '0px',
             border: '1px solid var(--glass-border)',
-            fontFamily: 'system-ui, -apple-system, sans-serif',
+            fontFamily: 'var(--font-family-base), system-ui, -apple-system, sans-serif',
             position: 'relative',
             overflow: 'hidden',
             display: 'flex',
             flexDirection: 'column',
-            minHeight: '230px',
-            gap: 'var(--spacing-4)'
+            minHeight: '240px',
+            gap: 'var(--spacing-4)',
+            transition: 'border-color 250ms ease'
           }}>
             <style dangerouslySetInnerHTML={{__html: `
-              @keyframes fade-in-up {
-                0% { opacity: 0; transform: translateY(8px); }
+              @keyframes slide-fade-up {
+                0% { opacity: 0; transform: translateY(6px); }
                 100% { opacity: 1; transform: translateY(0); }
               }
-              @keyframes fade-out-up {
+              @keyframes slide-fade-out {
                 0% { opacity: 1; transform: translateY(0); }
-                100% { opacity: 0; transform: translateY(-8px); }
-              }
-              @keyframes blink-dot {
-                0%, 100% { opacity: 0.35; }
-                50% { opacity: 1; }
+                100% { opacity: 0; transform: translateY(-6px); }
               }
             `}} />
             
             <div style={{ 
-              fontSize: '10px', 
-              color: '#5D8496', 
-              letterSpacing: '1.5px', 
+              fontSize: '11px', 
+              color: 'var(--color-text-secondary)', 
+              letterSpacing: '0.15em', 
               textTransform: 'uppercase', 
-              fontWeight: 700, 
-              textAlign: 'center', 
-              borderBottom: '1px solid var(--glass-border)', 
-              paddingBottom: 'var(--spacing-3)',
+              fontWeight: 600, 
+              textAlign: 'left', 
+              borderBottom: '1px dashed var(--glass-border)', 
+              paddingBottom: '12px',
               fontFamily: 'inherit'
             }}>
               BACKEND PIPELINE INGESTION TELEMETRY
@@ -207,41 +203,42 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
             <div style={{ 
               display: 'flex', 
               flexDirection: 'column', 
-              gap: 'var(--spacing-2)', 
+              gap: 'var(--spacing-3)', 
               flex: 1, 
               justifyContent: 'center',
-              fontFamily: "'SF Mono', 'Fira Code', 'JetBrains Mono', 'Courier New', monospace",
-              fontSize: '10px'
+              fontSize: '13px',
+              lineHeight: '1.4'
             }}>
-              {/* Previous Step (Fading out / Completed) */}
+              {/* Previous Step (Completed) */}
               {telemetryStep > 0 && (
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: 'var(--spacing-3)',
-                  animation: 'fade-out-up 1.2s forwards',
-                  padding: '4px var(--spacing-2)'
+                  animation: 'slide-fade-out 1.2s forwards',
+                  padding: '2px 0'
                 }}>
-                  {/* DONE Pill Badge */}
+                  {/* DONE Tag (Strict Zero Radius) */}
                   <span style={{ 
                     display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    minWidth: '65px',
-                    height: '18px',
-                    fontSize: '9px',
-                    fontWeight: 700,
-                    borderRadius: '10px',
-                    backgroundColor: 'rgba(16, 185, 129, 0.08)',
+                    minWidth: '70px',
+                    height: '20px',
+                    fontSize: '10px',
+                    fontWeight: 600,
+                    borderRadius: '0px',
+                    backgroundColor: 'transparent',
                     color: '#10b981',
-                    border: '1px solid rgba(16, 185, 129, 0.15)',
-                    letterSpacing: '0.5px'
+                    border: '1px solid rgba(16, 185, 129, 0.3)',
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase'
                   }}>
                     DONE
                   </span>
                   <span style={{ 
                     color: 'var(--color-text-secondary)',
-                    opacity: 0.5,
+                    opacity: 0.45,
                     overflow: 'hidden', 
                     textOverflow: 'ellipsis', 
                     whiteSpace: 'nowrap',
@@ -257,39 +254,31 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 gap: 'var(--spacing-3)',
-                animation: 'fade-in-up 0.3s ease-out',
-                backgroundColor: 'rgba(6, 182, 212, 0.04)',
-                borderLeft: '2px solid #06b6d4',
-                padding: '6px var(--spacing-2)',
-                borderRadius: '0 4px 4px 0'
+                animation: 'slide-fade-up 0.3s ease-out',
+                padding: '4px 0',
+                borderLeft: '2px solid var(--color-accent)',
+                paddingLeft: 'var(--spacing-2)'
               }}>
-                {/* RUNNING Pill Badge */}
+                {/* RUNNING Tag */}
                 <span style={{ 
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '4px',
-                  minWidth: '65px',
-                  height: '18px',
-                  fontSize: '9px',
-                  fontWeight: 700,
-                  borderRadius: '10px',
-                  backgroundColor: 'rgba(6, 182, 212, 0.1)',
-                  color: '#06b6d4',
-                  border: '1px solid rgba(6, 182, 212, 0.25)',
-                  letterSpacing: '0.5px'
+                  minWidth: '70px',
+                  height: '20px',
+                  fontSize: '10px',
+                  fontWeight: 600,
+                  borderRadius: '0px',
+                  backgroundColor: 'transparent',
+                  color: 'var(--color-accent)',
+                  border: '1px solid var(--color-accent)',
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase'
                 }}>
-                  <span style={{
-                    width: '4px',
-                    height: '4px',
-                    borderRadius: '50%',
-                    backgroundColor: '#06b6d4',
-                    animation: 'blink-dot 1s infinite ease-in-out'
-                  }} />
                   RUNNING
                 </span>
                 <span style={{ 
-                  color: '#06b6d4',
+                  color: 'var(--color-text-primary)',
                   fontWeight: 600,
                   overflow: 'hidden', 
                   textOverflow: 'ellipsis', 
@@ -306,23 +295,24 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                   display: 'flex',
                   alignItems: 'center',
                   gap: 'var(--spacing-3)',
-                  animation: 'fade-in-up 0.5s ease-out',
-                  padding: '4px var(--spacing-2)'
+                  animation: 'slide-fade-up 0.5s ease-out',
+                  padding: '2px 0'
                 }}>
-                  {/* NEXT Pill Badge */}
+                  {/* NEXT Tag */}
                   <span style={{ 
                     display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    minWidth: '65px',
-                    height: '18px',
-                    fontSize: '9px',
-                    fontWeight: 700,
-                    borderRadius: '10px',
-                    backgroundColor: 'rgba(245, 158, 11, 0.08)',
+                    minWidth: '70px',
+                    height: '20px',
+                    fontSize: '10px',
+                    fontWeight: 600,
+                    borderRadius: '0px',
+                    backgroundColor: 'transparent',
                     color: '#f59e0b',
-                    border: '1px solid rgba(245, 158, 11, 0.15)',
-                    letterSpacing: '0.5px'
+                    border: '1px solid rgba(245, 158, 11, 0.3)',
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase'
                   }}>
                     NEXT
                   </span>
@@ -345,29 +335,29 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
                   display: 'flex',
                   alignItems: 'center',
                   gap: 'var(--spacing-3)',
-                  padding: '4px var(--spacing-2)'
+                  padding: '2px 0',
+                  opacity: 0.4
                 }}>
-                  {/* WAIT Pill Badge */}
+                  {/* WAIT Tag */}
                   <span style={{ 
                     display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    minWidth: '65px',
-                    height: '18px',
-                    fontSize: '9px',
-                    fontWeight: 700,
-                    borderRadius: '10px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                    minWidth: '70px',
+                    height: '20px',
+                    fontSize: '10px',
+                    fontWeight: 600,
+                    borderRadius: '0px',
+                    backgroundColor: 'transparent',
                     color: 'var(--color-text-secondary)',
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
-                    opacity: 0.4,
-                    letterSpacing: '0.5px'
+                    border: '1px solid var(--glass-border)',
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase'
                   }}>
                     WAIT
                   </span>
                   <span style={{ 
                     color: 'var(--color-text-secondary)',
-                    opacity: 0.35,
                     overflow: 'hidden', 
                     textOverflow: 'ellipsis', 
                     whiteSpace: 'nowrap',
@@ -383,41 +373,39 @@ const InfoPanel: React.FC<InfoPanelProps> = ({
             <div style={{ 
               display: 'flex', 
               flexDirection: 'column',
-              gap: '6px',
-              borderTop: '1px solid var(--glass-border)', 
+              gap: '8px',
+              borderTop: '1px dashed var(--glass-border)', 
               paddingTop: 'var(--spacing-3)'
             }}>
               <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                fontSize: '9px',
+                fontSize: '11px',
                 color: 'var(--color-text-secondary)',
                 fontWeight: 600,
-                letterSpacing: '0.5px'
+                letterSpacing: '0.05em'
               }}>
                 <span>PIPELINE TELEMETRY STATUS</span>
-                <span style={{ 
-                  color: '#06b6d4', 
-                  fontFamily: "'SF Mono', 'Fira Code', monospace" 
-                }}>
+                <span style={{ color: 'var(--color-text-primary)' }}>
                   {Math.round(((telemetryStep + 1) / telemetrySteps.length) * 100)}% COMPLETE
                 </span>
               </div>
               {/* Progress Bar Track */}
               <div style={{
                 width: '100%',
-                height: '4px',
-                backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                borderRadius: '2px',
+                height: '6px',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid var(--glass-border)',
+                borderRadius: '0px',
                 overflow: 'hidden'
               }}>
                 {/* Progress Bar Fill */}
                 <div style={{
                   width: `${Math.round(((telemetryStep + 1) / telemetrySteps.length) * 100)}%`,
                   height: '100%',
-                  background: 'linear-gradient(90deg, #06b6d4 0%, #10b981 100%)',
-                  borderRadius: '2px',
+                  background: 'var(--color-accent)',
+                  borderRadius: '0px',
                   transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
                 }} />
               </div>
