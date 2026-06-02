@@ -103,13 +103,15 @@ const MapComponent = () => {
       });
 
       if (!response.ok) {
-        throw new Error(`Isochrone API returned status: ${response.status}`);
+        const errorMsg = await response.text();
+        throw new Error(errorMsg || `Isochrone API returned status: ${response.status}`);
       }
 
       const geojson = await response.json();
       setIsochroneData(geojson);
-    } catch (err) {
+    } catch (err: any) {
       console.error('[ISOCHRONE ENGINE] Error rendering travelshed:', err);
+      alert(`[Travelshed Engine] Failed to fetch travelshed isochrone:\n${err.message}\n\nPlease verify that your Hugging Face Space has "ORS_API_KEY" configured in Space Settings -> Secrets.`);
     }
   }, []);
   
