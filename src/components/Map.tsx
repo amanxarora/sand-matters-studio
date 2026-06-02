@@ -30,7 +30,10 @@ const sanitizeGeoJSON = (geojson: any): any => {
   return JSON.parse(JSON.stringify(geojson));
 };
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 
+  (typeof window !== 'undefined' && window.location.hostname === 'localhost' 
+    ? 'http://localhost:8000' 
+    : 'https://amanxar-sand-matters-backend.hf.space');
 
 const MapComponent = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
