@@ -81,8 +81,6 @@ const MapComponent = () => {
   }, []);
 
   const fetchAndRenderIsochrone = useCallback(async (coordinates: [number, number]) => {
-    if (!map.current) return;
-    
     const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
     const url = `${backendUrl}/api/isochrone`;
     
@@ -107,27 +105,7 @@ const MapComponent = () => {
       }
 
       const geojson = await response.json();
-
-      if (map.current.getSource('roi-isochrone')) {
-        (map.current.getSource('roi-isochrone') as maplibregl.GeoJSONSource).setData(sanitizeGeoJSON(geojson));
-      } else {
-        map.current.addSource('roi-isochrone', {
-          type: 'geojson',
-          data: sanitizeGeoJSON(geojson)
-        });
-
-        map.current.addLayer({
-          id: 'roi-isochrone-layer',
-          type: 'fill',
-          source: 'roi-isochrone',
-          layout: {},
-          paint: {
-            'fill-color': '#a35138',
-            'fill-opacity': 0.12,
-            'fill-outline-color': '#a35138'
-          }
-        }, 'gl-draw-polygon-fill-inactive.cold');
-      }
+      setIsochroneData(geojson);
     } catch (err) {
       console.error('[ISOCHRONE ENGINE] Error rendering travelshed:', err);
     }
@@ -136,6 +114,8 @@ const MapComponent = () => {
   const [selectedSiteId, setSelectedSiteId] = useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [showYolo, setShowYolo] = useState(true);
+  const [isochroneData, setIsochroneData] = useState<any | null>(null);
+  const [showIsochrone, setShowIsochrone] = useState(false);
 
   const filteredFeatures = useMemo(() => {
     if (!sites || !sites.features) return [];
@@ -481,8 +461,7 @@ const MapComponent = () => {
       const [geocodeResult, riversResult, nearbyPlacesResult] = await Promise.all([
         reverseGeocode(lng, lat),
         fetchRiversInROI(bbox),
-        fetchNearbyPlaces(lng, lat),
-        fetchAndRenderIsochrone([lng, lat])
+        fetchNearbyPlaces(lng, lat)
       ]);
       
       setSelectedRoi({
@@ -549,6 +528,36 @@ const MapComponent = () => {
     }
   }, [showYolo]);
 
+  useEffect(() => {
+    if (!map.current) return;
+    const source = map.current.getSource('roi-isochrone') as maplibregl.GeoJSONSource;
+    if (showIsochrone && isochroneData) {
+      if (source) {
+        source.setData(sanitizeGeoJSON(isochroneData));
+      } else {
+        map.current.addSource('roi-isochrone', {
+          type: 'geojson',
+          data: sanitizeGeoJSON(isochroneData)
+        });
+        map.current.addLayer({
+          id: 'roi-isochrone-layer',
+          type: 'fill',
+          source: 'roi-isochrone',
+          layout: {},
+          paint: {
+            'fill-color': '#a35138',
+            'fill-opacity': 0.12,
+            'fill-outline-color': '#a35138'
+          }
+        }, 'gl-draw-polygon-fill-inactive.cold');
+      }
+    } else {
+      if (source) {
+        source.setData(sanitizeGeoJSON({ type: 'FeatureCollection', features: [] }));
+      }
+    }
+  }, [showIsochrone, isochroneData]);
+
   // Dynamic WebGL point layers deprecated; system operates on map tiles exclusively
 
 
@@ -579,6 +588,8 @@ const MapComponent = () => {
 
       // Compute the centroid of the active drawn polygon to identify it in the regions database
       const drawCentroid = turf.centroid(selectedRoi.feature);
+      const [lng, lat] = drawCentroid.geometry.coordinates;
+      fetchAndRenderIsochrone([lng, lat]);
 
       // Start polling the backend /regions list every 5 seconds
       const startTime = Date.now();
@@ -706,7 +717,14 @@ const MapComponent = () => {
 
   return (
     <div style={{ display: 'flex', width: '100%', height: '100%', position: 'relative' }}>
-      <Toolbar onDrawPolygon={drawPolygon} onDelete={deleteSelection} showYolo={showYolo} onToggleYolo={() => setShowYolo(!showYolo)} />
+      <Toolbar 
+        onDrawPolygon={drawPolygon} 
+        onDelete={deleteSelection} 
+        showYolo={showYolo} 
+        onToggleYolo={() => setShowYolo(!showYolo)} 
+        showIsochrone={showIsochrone}
+        onToggleIsochrone={() => setShowIsochrone(!showIsochrone)}
+      />
       
       <div style={{ flex: 1, position: 'relative' }}>
         {(sitesLoading || geoLoading) && <div className={styles.mapLoading}>Loading intelligence data...</div>}

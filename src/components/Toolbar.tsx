@@ -7,9 +7,11 @@ interface ToolbarProps {
   onDelete: () => void;
   showYolo: boolean;
   onToggleYolo: () => void;
+  showIsochrone: boolean;
+  onToggleIsochrone: () => void;
 }
 
-const Toolbar: React.FC<ToolbarProps> = ({ onDrawPolygon, onDelete, showYolo, onToggleYolo }) => {
+const Toolbar: React.FC<ToolbarProps> = ({ onDrawPolygon, onDelete, showYolo, onToggleYolo, showIsochrone, onToggleIsochrone }) => {
   const { theme, toggleTheme } = useTheme();
   const { user } = useAuth();
 
@@ -104,6 +106,36 @@ const Toolbar: React.FC<ToolbarProps> = ({ onDrawPolygon, onDelete, showYolo, on
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
             <path d="M12 2v4M12 18v4M2 12h4M18 12h4"></path>
+          </svg>
+        </button>
+
+        <button 
+          onClick={onToggleIsochrone}
+          title={showIsochrone ? "Hide Travelshed Isochrone" : "Show Travelshed Isochrone"}
+          style={{
+            width: '40px', height: '40px',
+            backgroundColor: showIsochrone ? 'rgba(163, 81, 56, 0.2)' : 'var(--color-background)',
+            border: showIsochrone ? '1px solid #a35138' : '1px solid var(--glass-border)',
+            borderRadius: 'var(--border-radius-sm)',
+            cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: showIsochrone ? '#a35138' : 'var(--color-text-secondary)',
+            transition: 'var(--transition-fast)'
+          }}
+          onMouseOver={(e) => {
+            if (!showIsochrone) {
+              e.currentTarget.style.backgroundColor = 'var(--color-surface-hover)';
+            }
+          }}
+          onMouseOut={(e) => {
+            if (!showIsochrone) {
+              e.currentTarget.style.backgroundColor = 'var(--color-background)';
+            }
+          }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
         </button>
       </div>
